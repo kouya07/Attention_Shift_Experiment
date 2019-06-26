@@ -1,0 +1,1 @@
+{'participant_number': 'dwqf', 'user_name': 'fweq', 'random_rate': '0', 'hint_option': '1', 'random_option': '1', 'control_option': '1', 'block_number': '1'}

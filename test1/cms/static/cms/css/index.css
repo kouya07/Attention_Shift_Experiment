@@ -1,0 +1,7 @@
+div.log {
+    overflow-y: auto;
+    width: 600px;
+    height: 100px;
+    border: 1px solid;
+    white-space: pre;
+}

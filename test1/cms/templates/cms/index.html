@@ -1,0 +1,28 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{% static 'cms/js/fabric.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cms/js/jquery-3.4.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cms/js/jquery.json.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cms/js/dateformat.js' %}"></script>
+
+</head>
+<body onload="User_info()">
+
+    <div align="center">
+    <canvas id="canvas" style="border:1px solid;"￿></canvas>
+    </div>
+
+    <br>
+    <div class="log" id="log"></div>
+
+<script type="text/javascript" src="{% static 'cms/js/index.js' %}"></script>
+<script type="text/javascript" src="{% static 'cms/js/canvas.js' %}"></script>
+<link rel="stylesheet" type="text/css" href= "{% static 'cms/css/index.css' %}">
+</body>
+</html>

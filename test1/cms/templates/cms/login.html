@@ -1,0 +1,63 @@
+{% load static %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="{% static 'cms/js/jquery-3.4.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cms/js/jquery.json.js' %}"></script>
+</head>
+<body>
+    <div style="display:inline-block; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+        <form id="random">Random :
+            <input type="radio" name="q0" value="0"> 0%
+            <input type="radio" name="q0" value="20"> 20%
+            <input type="radio" name="q0" value="40"> 40%
+            <input type="radio" name="q0" value="60"> 60%
+            <input type="radio" name="q0" value="80"> 80%
+            <input type="radio" name="q0" value="100"> 100%
+        </form>
+
+        <form id="hint_option">Display_hints :
+            <input type="radio" name="q1" value="1"> Yes
+            <input type="radio" name="q1" value="0"> No
+        </form>
+
+        <form id="random_option">Random_Option :
+            <input type="radio" name="q2" value="1"> Yes
+            <input type="radio" name="q2" value="0"> No
+        </form>
+
+        <form id="control_option">Control_Option :
+            <input type="radio" name="q3" value="0"> Direct
+            <input type="radio" name="q3" value="1"> Not Direct
+        </form>
+
+        <form id="block_number">Block_number :
+            <select name="q4">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </form>
+    </div>
+
+    <p>participant_number :
+        <input type="text" id="participant_number"></p>
+    <p>User_name :
+        <input type="text" id="user_name"></p>
+
+    <button>Go</button>
+
+    <script type="text/javascript" src="{% static 'cms/js/login.js' %}"></script>
+</body>
+</html>
