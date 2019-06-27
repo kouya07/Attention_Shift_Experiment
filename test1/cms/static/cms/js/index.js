@@ -41,7 +41,7 @@ function MouseUp(now, late) {
     time_log = (now - late)/ 1000;
 
     const active_obj = canvas.getActiveObject();
-    console.log(active_obj);
+    // console.log(active_obj);
 
     if(active_obj != obj_A && active_obj != obj_B && active_obj != undefined) ChangeObj(active_obj);
     else if(active_obj == obj_B) {
@@ -103,8 +103,10 @@ function User_info(){
             RoundArray();
             Init();
         },
-        error: function() {
-            alert("error");
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("user log error");
+            // alert("XMLHttpRequest : " + XMLHttpRequest.status +  ", textStatus     : " + textStatus + ", errorThrown    : " + errorThrown.message);
+
         }
     });
 }
@@ -125,10 +127,13 @@ function SendData() {
         type: "POST",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
+        timeout: 0,
+        cache: false,
         data: $.toJSON(sendData),
         success: function () { },
-        error: function () {
-            alert("error");
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("cursor log error");
+            // alert("XMLHttpRequest : " + XMLHttpRequest.status +  ", textStatus     : " + textStatus + ", errorThrown    : " + errorThrown.message);
         }
     });
 }

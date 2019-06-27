@@ -1,1 +1,1 @@
-{'participant_number': 'fsad', 'user_name': 'sad', 'random_rate': '20', 'hint_option': '1', 'random_option': '1', 'control_option': '0', 'block_number': '1'}
+{'participant_number': 'das', 'user_name': 'dfsa', 'random_rate': '20', 'hint_option': '0', 'random_option': '0', 'control_option': '0', 'block_number': '1'}
