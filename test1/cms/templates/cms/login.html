@@ -10,60 +10,65 @@
     <script type="text/javascript" src="{% static 'cms/js/jquery.json.js' %}"></script>
 </head>
 <body>
-    <div style="display:inline-block; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-        <form id="random">Random :
-            <input type="radio" name="q0" value="0"> 0%
-            <input type="radio" name="q0" value="20"> 20%
-            <input type="radio" name="q0" value="40"> 40%
-            <input type="radio" name="q0" value="60"> 60%
-            <input type="radio" name="q0" value="80"> 80%
-            <input type="radio" name="q0" value="100"> 100%
-        </form>
+    <div class="container">
+        <form name ="form">
+            <h1>Sign in</h1>
 
-        <form id="hint_option">Result Feedback :
-            <input type="radio" name="q1" value="1"> Yes
-            <input type="radio" name="q1" value="0"> No
-        </form>
+            <p id="random">Inconsistency :
+                <input type="radio" name="q0" value="0"> 0%
+                <input type="radio" name="q0" value="20"> 20%
+                <input type="radio" name="q0" value="40"> 40%
+                <input type="radio" name="q0" value="60"> 60%
+                <input type="radio" name="q0" value="80"> 80%
+                <input type="radio" name="q0" value="100"> 100%
+            </p>
 
-        <form id="random_option">Random_Option :
-            <input type="radio" name="q2" value="1"> Yes
-            <input type="radio" name="q2" value="0"> No
-        </form>
+            <p id="hint_option">Result Feedback :
+                <input type="radio" name="q1" value="1"> Yes
+                <input type="radio" name="q1" value="0"> No
+            </p>
 
-        <form id="control_option">Control Mode :
-            <input type="radio" name="q3" value="0"> Direct
-            <input type="radio" name="q3" value="1"> Not Direct
-        </form>
+            <p id="random_option">Memory interference :
+                <input type="radio" name="q2" value="1"> Yes
+                <input type="radio" name="q2" value="0"> No
+            </p>
 
-        <form id="Device">Device :
-            <input type="radio" name="q4" value="0"> Mouse
-            <input type="radio" name="q4" value="1"> Stylus
-            <input type="radio" name="q4" value="2"> Finger
-        </form>
+            <p id="control_option">Control Mode :
+                <input type="radio" name="q3" value="0"> Direct
+                <input type="radio" name="q3" value="1"> Not Direct
+            </p>
 
-        <form id="block_number">Block_number :
-            <select name="q4">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
+            <p id="device">Device :
+                <input type="radio" name="q4" value="Mouse"> Mouse
+                <input type="radio" name="q4" value="Stylus"> Stylus
+                <input type="radio" name="q4" value="Finger"> Finger
+            </p>
+
+            <p id="block_number">Block_number :
+                <select name="q5">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </p><br>
+
+            <div class="form-content">
+                <input type="text" id="participant_number" placeholder="Participant Number">
+                <input type="text" id="user_name" placeholder="Username">
+
+                <div class="button" onclick="OnButtonClick();">Go</div>
+            </div>
         </form>
     </div>
 
-    <p>participant_number :
-        <input type="text" id="participant_number"></p>
-    <p>User_name :
-        <input type="text" id="user_name"></p>
-
-    <button>Go</button>
-
     <script type="text/javascript" src="{% static 'cms/js/login.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href= "{% static 'cms/css/login.css' %}">
 </body>
 </html>

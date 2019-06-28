@@ -19,8 +19,8 @@ hexagon = new fabric.Polygon([{x:0,y:-55},{x:47,y:-26.5},{x:47,y:26.5},{x:0,y:55
 hexagon.height =110;
 
 line = new fabric.Line([0, 700, 0, 0], {top: 0, left: 200, stroke: 'black', selectable: false});
-correct = new fabric.Text('✔', {fill: 'green', fontSize: 80, top: 150, left: 600, selectable: false});
-not_correct = new fabric.Text('✖', {fill:'red', fontSize: 80, top: 150, left: 600, selectable: false});
+correct = new fabric.Text('✔', {fill: 'green', fontSize: 80, top: 150, left: 650, selectable: false});
+not_correct = new fabric.Text('✖', {fill:'red', fontSize: 80, top: 150, left: 650, selectable: false});
 
 a = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(128,128,128,0.8)', strokeWidth: 1.5, stroke: 'black'});
 b = new fabric.Line([60, 0, 0, 0], {top: 430, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
@@ -154,7 +154,6 @@ function RandomOption() {
         obj_side = $.extend({}, r[i]);
         obj_side.top = top;
         canvas.add(obj_side);
-        console.log(obj_side);
         top += 135;
     }
 }

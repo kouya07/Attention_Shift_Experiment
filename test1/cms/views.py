@@ -37,7 +37,7 @@ def userinfo(request):
         s = ast.literal_eval(s)
 
     model = UserLog(participant_number=data[u'participant_number'], user_name=data[u'user_name'], random_rate=data[u'random_rate'],
-                    hint_option=data[u'hint_option'], random_option=data[u'random_option'], control_option=data[u'control_option'], block_number=data[u'block_number'])
+                    hint_option=data[u'hint_option'], random_option=data[u'random_option'], control_option=data[u'control_option'], device=data[u'device'], block_number=data[u'block_number'])
     model.save()
 
     return JsonResponse(s)

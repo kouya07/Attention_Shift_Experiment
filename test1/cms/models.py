@@ -41,4 +41,5 @@ class UserLog(models.Model):
     hint_option = models.CharField(max_length=20)
     random_option = models.CharField(max_length=20)
     control_option = models.CharField(max_length=20, null=True)
+    device = models.CharField(max_length=20, null=True)
     block_number = models.CharField(max_length=20)
