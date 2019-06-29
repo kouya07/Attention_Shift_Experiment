@@ -1,1 +1,1 @@
-{'participant_number': 'dさf', 'user_name': 'さdf', 'random_rate': '20', 'hint_option': '1', 'random_option': '1', 'control_option': '0', 'device': 'Stylus', 'block_number': '1'}
+{'participant_number': 'tret', 'user_name': 'gdfg', 'random_rate': '20', 'hint_option': '1', 'random_option': '1', 'control_option': '1', 'device': 'Mouse', 'block_number': '1'}

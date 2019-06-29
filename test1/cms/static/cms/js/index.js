@@ -36,7 +36,6 @@ function CursorLog(e, mouse_event) {
     log.insertBefore(text, log.firstChild);
 }
 
-//判定
 function MouseUp(now, late) {
     time_log = (now - late)/ 1000;
 
@@ -45,15 +44,12 @@ function MouseUp(now, late) {
 
     if(active_obj != obj_A && active_obj != obj_B && active_obj != undefined) ChangeObj(active_obj);
     else if(active_obj == obj_B) {
-        // 固定オブジェクト Fixed object Coordinate
         const c1 = obj_A.left + obj_A.width/2;
         const c2 = obj_A.top + obj_A.height/2;
 
-        // 動く方のオブジェクト Moving object Coordinate
         const active_obj_w = active_obj.width/2 + active_obj.left;
         const active_obj_h = active_obj.height/2 + active_obj.top;
 
-        // 一辺の長さ*0.1 Side length * 0.1
         const n1 = 0.1 * obj_length;
 
         // 2点間の距離 Distance between two points
@@ -71,18 +67,17 @@ function MouseUp(now, late) {
 
         SendData();
 
-        //ヒントを表示 Display hints
         if(hint_option) {
             canvas.add(hint);
             const timer = function () {
                 canvas.remove(hint);
                 canvas.clear();
-                Init(); // Initialize
+                Init();
             };
-            setTimeout(timer, 500); // 0.5秒間表示 Display for 0.5s
+            setTimeout(timer, 500); // Display for 0.5s
         } else {
             canvas.clear();
-            Init(); // Initialize
+            Init();
         }
     }
 }
@@ -103,10 +98,8 @@ function User_info(){
             RoundArray();
             Init();
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function() {
             alert("user log error");
-            // alert("XMLHttpRequest : " + XMLHttpRequest.status +  ", textStatus     : " + textStatus + ", errorThrown    : " + errorThrown.message);
-
         }
     });
 }
@@ -131,9 +124,8 @@ function SendData() {
         cache: false,
         data: $.toJSON(sendData),
         success: function () { },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        error: function () {
             alert("cursor log error");
-            // alert("XMLHttpRequest : " + XMLHttpRequest.status +  ", textStatus     : " + textStatus + ", errorThrown    : " + errorThrown.message);
         }
     });
 }

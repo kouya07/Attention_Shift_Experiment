@@ -1,12 +1,12 @@
 const canvas = new fabric.Canvas('canvas', {width: 1200, height: 700, selection: false});
 const obj_length = 100; // 一辺の長さ Length of a side
-let obj_side, obj_A, obj_B, circle, rect, triangle, star, hexagon, line, correct, not_correct; // Object name
+let obj_side, obj_A, obj_B, circle, rect, triangle, star, hexagon, line, correct, not_correct;
 let a, b, c, d, o, frame; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
-let mouse_event; // Mouse:{move, down, up}
-let round = 100, round_count = 0; // 試行回数 Number of trials [100times]
-let random_rate = 0; // ランダム率
-let round_array = Array.apply(null, Array(round)).map(function () {return 1 }); // 全て1で初期化
+let mouse_event;
+let round = 100, round_count = 0;
+let random_rate = 0;
+let round_array = Array.apply(null, Array(round)).map(function () {return 1 });
 
 let hint_option = false, random_option = false, control_option = false;
 
@@ -29,9 +29,8 @@ d = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,01
 o = new fabric.Line([0, 0, 0, 0], {top: 0, left: 0, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2}); // 座標調節用
 frame = new fabric.Rect({width: 850, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 300, strokeWidth: 1, stroke: 'black', selectable: false});
 
-const array = [circle, rect, triangle, star, hexagon]; // ランダム選択用
+const array = [circle, rect, triangle, star, hexagon];
 
-// オブジェクトの共通設定 Object common settings
 for(let i = 0; i < array.length; i++) {
     let top = 25 + 135 * i;
     array[i].strokeWidth = 1.5;

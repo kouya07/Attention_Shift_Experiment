@@ -24,7 +24,6 @@ function OnButtonClick() {
     if(q0 !=='' && q1 !=='' && q2 !=='' && q3 !=='' && q4 !=='' && q5 !=='' && user_name !=='' && participant_number !=='') {
         location.href = '../index/';
 
-        // 入力された情報をlog.txtに保存
         const sendData = {'participant_number': participant_number, 'user_name': user_name,
                         'random_rate': q0, 'hint_option': q1, 'random_option': q2, 'control_option': q3, 'device': q4, 'block_number': q5};
         $.ajax({
