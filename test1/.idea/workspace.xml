@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9edaa27b-4ea1-4fb4-b357-e826c53a46df" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cms/static/cms/js/canvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/cms/static/cms/js/canvas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/static/cms/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cms/static/cms/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/static/cms/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/cms/static/cms/css/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/templates/cms/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cms/templates/cms/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
     </list>
@@ -15,10 +14,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cms/static/cms/js/canvas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
+            <state relative-caret-position="2670">
               <caret line="178" column="1" lean-forward="true" selection-start-line="178" selection-start-column="1" selection-end-line="178" selection-end-column="1" />
             </state>
           </provider>
@@ -27,11 +26,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cms/templates/cms/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+            <state relative-caret-position="120">
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#canvas#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cms/static/cms/css/index.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -84,24 +92,24 @@
         <option value="$PROJECT_DIR$/cms/migrations/0011_auto_20190623_1503.py" />
         <option value="$PROJECT_DIR$/cms/migrations/0002_cursorlog.py" />
         <option value="$PROJECT_DIR$/test1/settings.py" />
-        <option value="$PROJECT_DIR$/cms/static/cms/css/index.css" />
         <option value="$PROJECT_DIR$/log.txt" />
         <option value="$PROJECT_DIR$/cms/static/cms/css/login.css" />
         <option value="$PROJECT_DIR$/cms/models.py" />
         <option value="$PROJECT_DIR$/cms/static/cms/js/login.js" />
         <option value="$PROJECT_DIR$/cms/views.py" />
         <option value="$PROJECT_DIR$/cms/templates/cms/login.html" />
-        <option value="$PROJECT_DIR$/cms/templates/cms/index.html" />
         <option value="$PROJECT_DIR$/cms/static/cms/js/canvas.js" />
         <option value="$PROJECT_DIR$/cms/static/cms/js/index.js" />
+        <option value="$PROJECT_DIR$/cms/templates/cms/index.html" />
+        <option value="$PROJECT_DIR$/cms/static/cms/css/index.css" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="223" />
-    <option name="y" value="147" />
+    <option name="y" value="27" />
     <option name="width" value="1080" />
-    <option name="height" value="629" />
+    <option name="height" value="749" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -179,16 +187,17 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cms/static/cms/css" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cms/static/cms/css" />
+      <recent name="$PROJECT_DIR$/cms" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/cms/static/cms/js" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cms" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -268,15 +277,15 @@
       <workItem from="1561624548358" duration="5348000" />
       <workItem from="1561704609077" duration="8751000" />
       <workItem from="1561813532658" duration="2515000" />
-      <workItem from="1562085791605" duration="5473000" />
+      <workItem from="1562085791605" duration="7391000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225909000" />
+    <option name="totallyTimeSpent" value="227827000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="223" y="147" width="1080" height="629" extended-state="0" />
+    <frame x="223" y="27" width="1080" height="749" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -469,13 +478,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/static/cms/css/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -545,20 +547,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cms/static/cms/js/canvas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2670">
+          <caret line="178" column="1" lean-forward="true" selection-start-line="178" selection-start-column="1" selection-end-line="178" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cms/templates/cms/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+        <state relative-caret-position="120">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#canvas#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/static/cms/js/canvas.js">
+    <entry file="file://$PROJECT_DIR$/cms/static/cms/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="178" column="1" lean-forward="true" selection-start-line="178" selection-start-column="1" selection-end-line="178" selection-end-column="1" />
+        <state relative-caret-position="240">
+          <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
         </state>
       </provider>
     </entry>
