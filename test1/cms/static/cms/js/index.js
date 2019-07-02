@@ -41,36 +41,42 @@ function MouseUp(now, late) {
 
     const active_obj = canvas.getActiveObject();
 
-    if(active_obj != obj_A && active_obj != obj_B && active_obj != undefined) ChangeObj(active_obj);
-    else if(active_obj == obj_B) {
-        const c1 = obj_A.left + obj_A.width/2;
-        const c2 = obj_A.top + obj_A.height/2;
-
-        const active_obj_w = active_obj.width/2 + active_obj.left;
-        const active_obj_h = active_obj.height/2 + active_obj.top;
-
-        const n1 = 0.1 * obj_length;
-
-        // 2点間の距離 Distance between two points
-        const D = Math.sqrt(Math.pow(active_obj_w-c1, 2) + Math.pow(active_obj_h-c2, 2));
-
-        if(D <= n1 && obj_A.name === obj_B.name) {
-            console.log(round_count, D, time_log, 'success');
-            judgment = 'success';
-            hint = correct;
+    if(active_obj != obj_A && active_obj != obj_B && active_obj != slider && active_obj != undefined) ChangeObj(active_obj);
+    else if(active_obj == obj_B || active_obj == slider) {
+        if (control_option && active_obj == obj_B) {
+            console.log(round_count, time_log, 'error');
+            judgment = 'error';
+            hint = error;
         } else {
-            console.log(round_count, D, time_log, 'failure');
-            judgment = 'failure';
-            hint = not_correct;
+            const c1 = obj_A.left + obj_A.width / 2;
+            const c2 = obj_A.top + obj_A.height / 2;
+
+            const active_obj_w = obj_B.width / 2 + obj_B.left;
+            const active_obj_h = obj_B.height / 2 + obj_B.top;
+
+            const n1 = 0.1 * obj_length;
+
+            // 2点間の距離 Distance between two points
+            const D = Math.sqrt(Math.pow(active_obj_w - c1, 2) + Math.pow(active_obj_h - c2, 2));
+
+            if (D <= n1 && obj_A.name === obj_B.name) {
+                console.log(round_count, D, time_log, 'success');
+                judgment = 'success';
+                hint = correct;
+            } else {
+                console.log(round_count, D, time_log, 'failure');
+                judgment = 'failure';
+                hint = not_correct;
+            }
         }
 
         SendData();
 
-        if(hint_option) {
+        if (hint_option) {
             canvas.add(hint);
             const timer = function () {
-                canvas.remove(hint);
-                canvas.clear();
+            canvas.remove(hint);
+            canvas.clear();
                 Init();
             };
             setTimeout(timer, 500); // Display for 0.5s
@@ -93,6 +99,11 @@ function User_info(){
             hint_option =  Boolean(Number(data.result_feedback));
             random_option = Boolean(Number(data.memory_interference));
             control_option = Boolean(Number(data.control_mode));
+
+            if(control_option) {
+                left_limit = frame.left;
+                frame_limit = 50;
+            }
 
             RoundArray();
             Init();
