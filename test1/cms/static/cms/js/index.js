@@ -40,7 +40,6 @@ function MouseUp(now, late) {
     time_log = (now - late)/ 1000;
 
     const active_obj = canvas.getActiveObject();
-    // console.log(active_obj);
 
     if(active_obj != obj_A && active_obj != obj_B && active_obj != undefined) ChangeObj(active_obj);
     else if(active_obj == obj_B) {
@@ -90,10 +89,10 @@ function User_info(){
         success: function(data) {
             username = data.user_name;
             participant_number = data.participant_number;
-            hint_option =  Boolean(Number(data.hint_option));
-            random_option = Boolean(Number(data.random_option));
-            control_option = Boolean(Number(data.control_option));
-            random_rate = data.random_rate;
+            random_rate = data.inconsistency;
+            hint_option =  Boolean(Number(data.result_feedback));
+            random_option = Boolean(Number(data.memory_interference));
+            control_option = Boolean(Number(data.control_mode));
 
             RoundArray();
             Init();

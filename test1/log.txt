@@ -1,1 +1,1 @@
-{'participant_number': 'tret', 'user_name': 'gdfg', 'random_rate': '20', 'hint_option': '1', 'random_option': '1', 'control_option': '1', 'device': 'Mouse', 'block_number': '1'}
+{'participant_number': 'aaa', 'user_name': 'www', 'inconsistency': '20', 'result_feedback': '1', 'memory_interference': '1', 'control_mode': '1', 'device': 'Mouse', 'block_number': '1'}

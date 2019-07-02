@@ -25,7 +25,7 @@ function OnButtonClick() {
         location.href = '../index/';
 
         const sendData = {'participant_number': participant_number, 'user_name': user_name,
-                        'random_rate': q0, 'hint_option': q1, 'random_option': q2, 'control_option': q3, 'device': q4, 'block_number': q5};
+                        'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5};
         $.ajax({
             url: 'userlog/',
             type: "POST",

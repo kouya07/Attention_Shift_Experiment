@@ -1,14 +1,26 @@
 const canvas = new fabric.Canvas('canvas', {width: 1200, height: 700, selection: false});
 const obj_length = 100; // 一辺の長さ Length of a side
 let obj_side, obj_A, obj_B, circle, rect, triangle, star, hexagon, line, correct, not_correct;
-let a, b, c, d, o, frame; // Variable for Control_Option
+let a, b, c, d, adjustment_obj, frame; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
 let mouse_event;
-let round = 100, round_count = 0;
+let round = 10, round_count = 0;
 let random_rate = 0;
 let round_array = Array.apply(null, Array(round)).map(function () {return 1 });
 
 let hint_option = false, random_option = false, control_option = false;
+
+line = new fabric.Line([0, 700, 0, 0], {top: 0, left: 200, stroke: 'black', selectable: false});
+correct = new fabric.Text('✔', {fill: 'green', fontSize: 80, top: 150, left: 650, selectable: false});
+not_correct = new fabric.Text('✖', {fill:'red', fontSize: 80, top: 150, left: 650, selectable: false});
+
+// object to drag the block in a bounded tunnel
+a = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(128,128,128,0.8)', strokeWidth: 1.5, stroke: 'black'});
+b = new fabric.Line([60, 0, 0, 0], {top: 430, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
+c = new fabric.Line([60, 0, 0, 0], {top: 450, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
+d = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2});
+adjustment_obj = new fabric.Line([0, 0, 0, 0], {top: 0, left: 0, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2}); // 座標調節用
+frame = new fabric.Rect({width: 850, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 300, strokeWidth: 1, stroke: 'black', selectable: false});
 
 circle = new fabric.Circle({name: 'circle', radius: 50});
 rect = new fabric.Rect({name: 'rect', width: obj_length, height: obj_length});
@@ -18,19 +30,7 @@ star = new fabric.Star({name: 'star', numPoints: 5, innerRadius:25, outerRadius:
 hexagon = new fabric.Polygon([{x:0,y:-55},{x:47,y:-26.5},{x:47,y:26.5},{x:0,y:55},{x:-47,y:26.5},{x:-47,y:-26.5}], {name: 'hexagon'});
 hexagon.height =110;
 
-line = new fabric.Line([0, 700, 0, 0], {top: 0, left: 200, stroke: 'black', selectable: false});
-correct = new fabric.Text('✔', {fill: 'green', fontSize: 80, top: 150, left: 650, selectable: false});
-not_correct = new fabric.Text('✖', {fill:'red', fontSize: 80, top: 150, left: 650, selectable: false});
-
-a = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(128,128,128,0.8)', strokeWidth: 1.5, stroke: 'black'});
-b = new fabric.Line([60, 0, 0, 0], {top: 430, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
-c = new fabric.Line([60, 0, 0, 0], {top: 450, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
-d = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2});
-o = new fabric.Line([0, 0, 0, 0], {top: 0, left: 0, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2}); // 座標調節用
-frame = new fabric.Rect({width: 850, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 300, strokeWidth: 1, stroke: 'black', selectable: false});
-
 const array = [circle, rect, triangle, star, hexagon];
-
 for(let i = 0; i < array.length; i++) {
     let top = 25 + 135 * i;
     array[i].strokeWidth = 1.5;
@@ -186,6 +186,7 @@ function ControlOption_objB(r) {
     obj_B.top = 200;
     obj_B.left = 0;
 
-    obj_B = new fabric.Group([$.extend({}, a), $.extend({}, b), $.extend({}, c), $.extend({}, d), $.extend({}, obj_B), $.extend({}, o)], {top: 100, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
+    obj_B = new fabric.Group([$.extend({}, a), $.extend({}, b), $.extend({}, c), $.extend({}, d), $.extend({}, obj_B), $.extend({}, adjustment_obj)],
+                                {top: 100, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
     obj_B.name = r.name;
 }
