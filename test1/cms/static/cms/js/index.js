@@ -109,7 +109,7 @@ function User_info(){
             Init();
         },
         error: function() {
-            alert("user log error");
+            // alert("user log error");
         }
     });
 }
@@ -135,7 +135,7 @@ function SendData() {
         data: $.toJSON(sendData),
         success: function () { },
         error: function () {
-            alert("cursor log error");
+            // alert("cursor log error");
         }
     });
 }

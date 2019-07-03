@@ -35,7 +35,7 @@ function OnButtonClick() {
             success: function() {
             },
             error: function() {
-                alert("log error");
+                // alert("log error");
             }
         });
     } else alert("全て入力してください Please input all.");

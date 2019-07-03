@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Sign in</title>
+    <title>Page 1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="{% static 'cms/js/jquery-3.4.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'cms/js/jquery.json.js' %}"></script>
@@ -12,10 +12,10 @@
 <body style="visibility:hidden" onLoad="document.body.style.visibility='visible'">
     <div class="container">
         <form name ="form">
-            <h1>Sign in</h1>
+            <h1>Attention Shift Experiment</h1>
 
             <p>Inconsistency :
-                <input type="radio" name="q0" value="0"> 0%
+                <input type="radio" name="q0" value="0" checked="checked"> 0%
                 <input type="radio" name="q0" value="20"> 20%
                 <input type="radio" name="q0" value="40"> 40%
                 <input type="radio" name="q0" value="60"> 60%
@@ -24,22 +24,22 @@
             </p>
 
             <p>Result Feedback :
-                <input type="radio" name="q1" value="1"> Yes
+                <input type="radio" name="q1" value="1" checked="checked"> Yes
                 <input type="radio" name="q1" value="0"> No
             </p>
 
             <p>Memory Interference :
-                <input type="radio" name="q2" value="1"> Yes
+                <input type="radio" name="q2" value="1" checked="checked"> Yes
                 <input type="radio" name="q2" value="0"> No
             </p>
 
             <p>Control Mode :
-                <input type="radio" name="q3" value="1"> Not Direct
+                <input type="radio" name="q3" value="1" checked="checked"> Not Direct
                 <input type="radio" name="q3" value="0"> Direct
             </p>
 
             <p>Device :
-                <input type="radio" name="q4" value="Mouse"> Mouse
+                <input type="radio" name="q4" value="Mouse" checked="checked"> Mouse
                 <input type="radio" name="q4" value="Stylus"> Stylus
                 <input type="radio" name="q4" value="Finger"> Finger
             </p>
