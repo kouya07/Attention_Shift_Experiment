@@ -9,7 +9,7 @@ def requested_cursorlog(request):
     data = simplejson.loads(request.body)
     print(data)
 
-    model = CursorLog(participant_number=data[u'participant_number'], user_name=data[u'user_name'], mouse_event=data[u'mouse_event'],
+    model = CursorLog(participant_number=data[u'participant_number'], mouse_event=data[u'mouse_event'],
                       time=data[u'time'],time_ms=data[u'time_ms'], pointer_x=data[u'pointer_x'], pointer_y=data[u'pointer_y'],
                       judgment=data[u'judgment'], s=data[u's'], T1=data[u'T1'], T2=data[u'T2'], round=data[u'round_count'])
     model.save()
@@ -36,7 +36,7 @@ def userinfo(request):
         data = ast.literal_eval(data)
         s = ast.literal_eval(s)
 
-    model = UserLog(participant_number=data[u'participant_number'], user_name=data[u'user_name'], inconsistency=data[u'inconsistency'],
+    model = UserLog(participant_number=data[u'participant_number'], inconsistency=data[u'inconsistency'],
                     result_feedback=data[u'result_feedback'], memory_interference=data[u'memory_interference'], control_mode=data[u'control_mode'],
                     device=data[u'device'], block_number=data[u'block_number'])
     model.save()

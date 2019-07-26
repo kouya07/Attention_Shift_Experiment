@@ -20,7 +20,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 class CursorLog(models.Model):
     # id = models.CharField(primary_key=True, max_length=20)
     participant_number = models.CharField(max_length=20)
-    user_name = models.CharField(max_length=20)
     mouse_event = models.CharField(max_length=20)
     time = models.CharField(max_length=30)
     time_ms = models.CharField(max_length=20, null=True)
@@ -36,7 +35,6 @@ class CursorLog(models.Model):
 class UserLog(models.Model):
     # id = models.CharField(primary_key=True, max_length=20)
     participant_number = models.CharField(max_length=20)
-    user_name = models.CharField(max_length=20)
     inconsistency = models.CharField(max_length=20)
     result_feedback = models.CharField(max_length=20)
     memory_interference = models.CharField(max_length=20)

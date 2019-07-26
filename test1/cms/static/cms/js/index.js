@@ -12,7 +12,7 @@ $.ajaxSetup({
 });
 
 const log = document.getElementById('log');
-let username, participant_number;
+let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
 
@@ -41,8 +41,11 @@ function MouseUp(now, late) {
 
     const active_obj = canvas.getActiveObject();
 
+    console.log(active_obj);
+
     if(active_obj != obj_A && active_obj != obj_B && active_obj != slider && active_obj != undefined) ChangeObj(active_obj);
-    else if(active_obj == obj_B || active_obj == slider) {
+    else if(active_obj == obj_B || active_obj == slider && active_obj != undefined) {
+        console.log(active_obj);
         if (control_option && active_obj == obj_B) {
             console.log(round_count, time_log, 'error');
             judgment = 'error';
@@ -70,30 +73,27 @@ function MouseUp(now, late) {
             }
         }
 
-        SendData();
+        if (hint_option) canvas.add(hint);
 
-        if (hint_option) {
-            canvas.add(hint);
-            const timer = function () {
+        const timer = function () {
             canvas.remove(hint);
             canvas.clear();
-                Init();
-            };
-            setTimeout(timer, 500); // Display for 0.5s
-        } else {
-            canvas.clear();
             Init();
-        }
+        };
+
+        setTimeout(timer, 500); // Display for 0.5s
     }
+
+    SendData();
 }
 
 //ユーザー情報を取得 Get user information
 function User_info(){
     $.ajax({
+        async: false,
         url: 'userinfo/',
         type: "GET",
         success: function(data) {
-            username = data.user_name;
             participant_number = data.participant_number;
             random_rate = data.inconsistency;
             hint_option =  Boolean(Number(data.result_feedback));
@@ -109,7 +109,7 @@ function User_info(){
             Init();
         },
         error: function() {
-            // alert("user log error");
+            alert("user log error");
         }
     });
 }
@@ -117,7 +117,7 @@ function User_info(){
 // カーソルログ情報を送る Send cursor log information
 function SendData() {
         const sendData = {
-        'participant_number': participant_number, 'user_name': username, 'time': dateStr, 'mouse_event': mouse_event,
+        'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
         'pointer_x': mouse_pos.x.toFixed(6),
         'pointer_y': mouse_pos.y.toFixed(6),
         'judgment': judgment, 's': time_log,

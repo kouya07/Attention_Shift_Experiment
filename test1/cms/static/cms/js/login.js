@@ -13,7 +13,6 @@ $.ajaxSetup({
 
 function OnButtonClick() {
     const participant_number = document.getElementById('participant_number').value;
-    const user_name = document.getElementById('user_name').value;
     const q0 = document.form.elements['q0'].value;
     const q1 = document.form.elements['q1'].value;
     const q2 = document.form.elements['q2'].value;
@@ -21,12 +20,12 @@ function OnButtonClick() {
     const q4 = document.form.elements['q4'].value;
     const q5 = document.form.elements['q5'].value;
 
-    if(q0 !=='' && q1 !=='' && q2 !=='' && q3 !=='' && q4 !=='' && q5 !=='' && user_name !=='' && participant_number !=='') {
+    if(q0 !=='' && q1 !=='' && q2 !=='' && q3 !=='' && q4 !=='' && q5 !=='' && participant_number !=='') {
         location.href = '../index/';
 
-        const sendData = {'participant_number': participant_number, 'user_name': user_name,
-                        'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5};
+        const sendData = {'participant_number': participant_number, 'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5};
         $.ajax({
+            async: false,
             url: 'userlog/',
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -35,7 +34,7 @@ function OnButtonClick() {
             success: function() {
             },
             error: function() {
-                // alert("log error");
+                alert("log error");
             }
         });
     } else alert("全て入力してください Please input all.");
