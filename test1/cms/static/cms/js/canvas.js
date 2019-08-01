@@ -5,7 +5,7 @@ let a, b, c, d, adjustment_obj, frame, slider; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
 let mouse_event;
 let left_limit = 200, frame_limit = 0;
-let round = 100, round_count = 0;
+let round = 10, round_count = 0;
 let random_rate = 0;
 let round_array = Array.apply(null, Array(round)).map(function () {return 1 });
 
@@ -59,7 +59,10 @@ function Init() {
         r = Array.apply(null, Array(2)).map(function () {return f });
     }
 
-    if(round_count === round) alert("終了 Thank you.");
+    if(round_count === round) {
+        logout();
+        alert("終了 Thank you.");
+    }
 
     // 固定オブジェクト Fixed object Coordinate
     obj_A = $.extend({}, r[0]);

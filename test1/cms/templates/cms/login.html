@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="{% static 'cms/js/jquery-3.4.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'cms/js/jquery.json.js' %}"></script>
+    <script type="text/javascript" src="{% static 'cms/js/dateformat.js' %}"></script>
 </head>
 <body style="visibility:hidden" onLoad="document.body.style.visibility='visible'">
 {#    <div class="container">#}
@@ -164,9 +165,9 @@
                 </p><br>
 
                 <div class="form-content">
-                    <input type="text" id="participant_number" placeholder="Participant Number">
+                    <input type="text" id="participant_number" placeholder="Participant Number" value="1000">
 
-                    <div class="button" onclick="OnButtonClick();">Go</div>
+                    <div class="button" id="button" onclick="OnButtonClick();">Go</div>
                 </div>
             </form>
         </div>

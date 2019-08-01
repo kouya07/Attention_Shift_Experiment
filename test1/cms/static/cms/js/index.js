@@ -139,3 +139,18 @@ function SendData() {
         }
     });
 }
+
+function logout() {
+        $.ajax({
+        url: 'log/',
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        datatype: "json",
+        timeout: 0,
+        cache: false,
+        success: function () { },
+        error: function () {
+            // alert("cursor log error");
+        }
+    });
+}

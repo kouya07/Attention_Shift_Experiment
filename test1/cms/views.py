@@ -3,6 +3,7 @@ from django.http import *
 from django.shortcuts import render
 import json as simplejson
 import ast
+from datetime import datetime
 
 
 def requested_cursorlog(request):
@@ -11,7 +12,7 @@ def requested_cursorlog(request):
 
     model = CursorLog(participant_number=data[u'participant_number'], mouse_event=data[u'mouse_event'],
                       time=data[u'time'],time_ms=data[u'time_ms'], pointer_x=data[u'pointer_x'], pointer_y=data[u'pointer_y'],
-                      judgment=data[u'judgment'], s=data[u's'], T1=data[u'T1'], T2=data[u'T2'], round=data[u'round_count'])
+                      judgment=data[u'judgment'], s=data[u's'], T1=data[u'T1'], T2=data[u'T2'], trial=data[u'round_count'])
     model.save()
 
     return HttpResponse("success")
@@ -36,12 +37,24 @@ def userinfo(request):
         data = ast.literal_eval(data)
         s = ast.literal_eval(s)
 
+    return JsonResponse(s)
+
+
+def log(request):
+    with open('log.txt') as f:
+        s = f.read()
+        data = simplejson.dumps(s)
+        data = simplejson.loads(data)
+        data = ast.literal_eval(data)
+
+        d = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+
     model = UserLog(participant_number=data[u'participant_number'], inconsistency=data[u'inconsistency'],
                     result_feedback=data[u'result_feedback'], memory_interference=data[u'memory_interference'], control_mode=data[u'control_mode'],
-                    device=data[u'device'], block_number=data[u'block_number'])
+                    device=data[u'device'], block_number=data[u'block_number'], start_time=data[u'start_time'], end_time=d)
     model.save()
 
-    return JsonResponse(s)
+    return HttpResponse("success")
 
 
 def login(request):

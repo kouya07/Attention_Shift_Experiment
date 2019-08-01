@@ -19,11 +19,12 @@ function OnButtonClick() {
     const q3 = document.form.elements['q3'].value;
     const q4 = document.form.elements['q4'].value;
     const q5 = document.form.elements['q5'].value;
+    const now = new Date();
+    const dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss");
+    const dateStr = dateFormat.format(now);
 
     if(q0 !=='' && q1 !=='' && q2 !=='' && q3 !=='' && q4 !=='' && q5 !=='' && participant_number !=='') {
-        location.href = '../index/';
-
-        const sendData = {'participant_number': participant_number, 'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5};
+        const sendData = {'participant_number': participant_number, 'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5, 'start_time': dateStr};
         $.ajax({
             async: false,
             url: 'userlog/',
@@ -32,6 +33,7 @@ function OnButtonClick() {
             datatype: "json",
             data: $.toJSON(sendData),
             success: function() {
+                 location.href = '../index/';
             },
             error: function() {
                 alert("log error");

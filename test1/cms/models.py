@@ -29,7 +29,7 @@ class CursorLog(models.Model):
     s = models.CharField(max_length=20)
     T1 = models.CharField(max_length=20)
     T2 = models.CharField(max_length=20)
-    round = models.CharField(max_length=20, null=True)
+    trial = models.CharField(max_length=20, null=True)
 
 
 class UserLog(models.Model):
@@ -41,3 +41,5 @@ class UserLog(models.Model):
     control_mode = models.CharField(max_length=20, null=True)
     device = models.CharField(max_length=20, null=True)
     block_number = models.CharField(max_length=20)
+    start_time = models.CharField(max_length=20, null=True)
+    end_time = models.CharField(max_length=20, null=True)

@@ -7,4 +7,5 @@ urlpatterns = [
     path('index/cursorlog/', views.requested_cursorlog),
     path('login/userlog/', views.requested_userlog),
     path('index/userinfo/', views.userinfo),
+    path('index/log/', views.log),
 ]
