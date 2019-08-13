@@ -11,14 +11,18 @@ $.ajaxSetup({
     }
 });
 
+const page = document.getElementById("page");
 const log = document.getElementById('log');
 let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
+let latency = 500; // Display for 0.5s
+let startTime, endTime, trialTime;
 
 function CursorLog(e, mouse_event) {
     judgment = '';
     time_log = '';
+    trialTime = '';
     mouse_pos = canvas.getPointer(e.e);
 
     const now = new Date();
@@ -28,7 +32,8 @@ function CursorLog(e, mouse_event) {
 
     if(mouse_event == 'down') temporary_time = now;
     else if (mouse_event == 'up') MouseUp(now, temporary_time);
-    else SendData();
+
+    SendData();
 
     const text = document.createTextNode(now.toLocaleTimeString() + " mouse:" + mouse_event
         + " = {x = " + mouse_pos.x.toFixed(6)
@@ -37,8 +42,6 @@ function CursorLog(e, mouse_event) {
 }
 
 function MouseUp(now, late) {
-    time_log = (now - late)/ 1000;
-
     const active_obj = canvas.getActiveObject();
 
     console.log(active_obj);
@@ -71,6 +74,11 @@ function MouseUp(now, late) {
                 judgment = 'failure';
                 hint = not_correct;
             }
+
+            time_log = (now - late)/ 1000;
+
+            endTime = Date.now() + latency;
+            trialTime = endTime - startTime;
         }
 
         if (hint_option) canvas.add(hint);
@@ -81,10 +89,8 @@ function MouseUp(now, late) {
             Init();
         };
 
-        setTimeout(timer, 500); // Display for 0.5s
+        setTimeout(timer, latency);
     }
-
-    SendData();
 }
 
 //ユーザー情報を取得 Get user information
@@ -116,13 +122,11 @@ function User_info(){
 
 // カーソルログ情報を送る Send cursor log information
 function SendData() {
-        const sendData = {
+    const sendData = {
         'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
-        'pointer_x': mouse_pos.x.toFixed(6),
-        'pointer_y': mouse_pos.y.toFixed(6),
-        'judgment': judgment, 's': time_log,
-        'T1': obj_B.name, 'T2': obj_A.name,
-        'round_count': round_count, 'time_ms': milliseconds
+        'pointer_x': mouse_pos.x.toFixed(6), 'pointer_y': mouse_pos.y.toFixed(6),
+        'judgment': judgment, 's': time_log, 'T1': obj_B.name, 'T2': obj_A.name,
+        'round_count': round_count, 'time_ms': milliseconds, 'trial_time_ms': trialTime
     };
 
     $.ajax({
@@ -141,14 +145,19 @@ function SendData() {
 }
 
 function logout() {
-        $.ajax({
+    page.style.display = "none";
+
+    $.ajax({
         url: 'log/',
         type: "POST",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
         timeout: 0,
         cache: false,
-        success: function () { },
+        success: function () {
+            alert("終了 Thank you.");
+            location.href = '../login/';
+        },
         error: function () {
             // alert("cursor log error");
         }

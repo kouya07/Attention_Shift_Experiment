@@ -30,7 +30,6 @@ circle = new fabric.Circle({name: 'circle', radius: 50});
 rect = new fabric.Rect({name: 'rect', width: obj_length, height: obj_length});
 triangle = new fabric.Triangle({name: 'triangle', width: obj_length, height: obj_length});
 star = new fabric.Star({name: 'star', numPoints: 5, innerRadius:25, outerRadius: 50});
-// hexagon = new fabric.Polygon([{x:0,y:0},{x:47,y:28.5},{x:47,y:81.5},{x:0,y:110},{x:-47,y:81.5},{x:-47,y:28.5}], {name: 'hexagon'});
 hexagon = new fabric.Polygon([{x:0,y:-55},{x:47,y:-26.5},{x:47,y:26.5},{x:0,y:55},{x:-47,y:26.5},{x:-47,y:-26.5}], {name: 'hexagon'});
 hexagon.height =110;
 
@@ -59,10 +58,7 @@ function Init() {
         r = Array.apply(null, Array(2)).map(function () {return f });
     }
 
-    if(round_count === round) {
-        logout();
-        alert("終了 Thank you.");
-    }
+    if(round_count === round) logout();
 
     // 固定オブジェクト Fixed object Coordinate
     obj_A = $.extend({}, r[0]);
@@ -79,6 +75,7 @@ function Init() {
     obj_B.lockMovementY = false;
 
     round_count++;
+    startTime = Date.now();
 
     if(control_option) {
     slider  = new fabric.Group([$.extend({}, a), $.extend({}, b), $.extend({}, c), $.extend({}, d)], {name: 'slider', top: 500, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
