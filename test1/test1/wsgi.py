@@ -1,7 +1,7 @@
 """
 WSGI config for test1 project.
 
-It exposes the WSGI callable as round_array module-level variable named ``application``.
+It exposes the WSGI callable as trial_array module-level variable named ``application``.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/2.0/howto/deployment/wsgi/

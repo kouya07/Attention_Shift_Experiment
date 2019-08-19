@@ -26,15 +26,6 @@ h1 {
   margin-top: 0.2em;
 }
 
-a {
-  font-size: 0.98em;
-  color: #8a97a0;
-  text-decoration: none;
-}
-a:hover {
-  color: green;
-}
-
 .container {
   display: flex;
   -webkit-display: box;
@@ -72,7 +63,7 @@ form {
   border-radius: 4px;
   padding: 1em;
   margin-bottom: 1.2em;
-  width: 100%;
+  width: 64%;
 }
 
 form input:focus {
@@ -122,54 +113,6 @@ form input:focus {
     transform: scale(2.5);
     opacity: 0;
   }
-}
-
-.ab div {
-  float: left;
-}
-
-.abx{
-  float: left;
-  font-size: 70%;
-}
-
-.acv div {
-  float: left;
-  margin-right: 20px;
-}
-
-.kk {
-  margin: 0;
-  margin-left: 100px;
-padding: 0;
-}
-
-.ahj div {
-  float: left;
-}
-
-div.log {
-    overflow-y: auto;
-    width: 160px;
-    height: 100px;
-    border: 1px solid;
-    white-space: pre;
-}
-
-.kk div {
-  display: block;
-}
-
-.g {
-    font-size: 70%;
-}
-
-.aer {
-  margin-right: 20px;
-}
-
-.ab {
-  margin-right: 20px;
 }
 
 .boxWrap{

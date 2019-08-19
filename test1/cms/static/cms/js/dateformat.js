@@ -22,7 +22,7 @@ S : Millisecond  ex. "SSS" -> "000" "012" "999",
                      "SS" -> "00" "12" "999", "S" -> "0" "12" "999"
 
 Text can be quoted using single quotes (') to avoid interpretation.
-"''" represents round_array single quote.
+"''" represents trial_array single quote.
 
 
 Useing..

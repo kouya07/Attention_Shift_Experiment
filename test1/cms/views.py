@@ -12,7 +12,7 @@ def requested_cursorlog(request):
 
     model = CursorLog(participant_number=data[u'participant_number'], mouse_event=data[u'mouse_event'],
                       time=data[u'time'],time_ms=data[u'time_ms'], pointer_x=data[u'pointer_x'], pointer_y=data[u'pointer_y'],
-                      judgment=data[u'judgment'], s=data[u's'], T1=data[u'T1'], T2=data[u'T2'], trial=data[u'round_count'], trial_time_ms=data[u'trial_time_ms'])
+                      judgment=data[u'judgment'], s=data[u's'], T1=data[u'T1'], T2=data[u'T2'], trial=data[u'trial_count'], trial_time_ms=data[u'trial_time_ms'])
     model.save()
 
     return HttpResponse("success")
@@ -29,12 +29,9 @@ def requested_userlog(request):
     return HttpResponse("success")
 
 
-def userinfo(request):
+def user_info(request):
     with open('log.txt') as f:
         s = f.read()
-        data = simplejson.dumps(s)
-        data = simplejson.loads(data)
-        data = ast.literal_eval(data)
         s = ast.literal_eval(s)
 
     return JsonResponse(s)

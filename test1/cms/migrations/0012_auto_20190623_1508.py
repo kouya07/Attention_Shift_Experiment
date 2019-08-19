@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='cursorlog',
-            name='round',
+            name='trial',
             field=models.CharField(max_length=20, null=True),
         ),
     ]

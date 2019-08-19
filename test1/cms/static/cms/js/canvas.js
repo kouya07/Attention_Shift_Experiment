@@ -1,13 +1,13 @@
 const canvas = new fabric.Canvas('canvas', {width: 1200, height: 700, selection: false});
 const obj_length = 100; // 一辺の長さ Length of a side
 let obj_side, obj_A, obj_B, circle, rect, triangle, star, hexagon, line, correct, not_correct, error, error1, error2;
-let a, b, c, d, adjustment_obj, frame, slider; // Variable for Control_Option
+let a, b, c, d, frame, slider; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
 let mouse_event;
 let left_limit = 200, frame_limit = 0;
-let round = 10, round_count = 0;
+let trial = 100, trial_count = 0;
 let random_rate = 0;
-let round_array = Array.apply(null, Array(round)).map(function () {return 1 });
+let trial_array = Array.apply(null, Array(trial)).map(function () {return 1 });
 
 let hint_option = false, random_option = false, control_option = false;
 
@@ -23,7 +23,6 @@ a = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(128,128,128,
 b = new fabric.Line([60, 0, 0, 0], {top: 430, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
 c = new fabric.Line([60, 0, 0, 0], {top: 450, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
 d = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2});
-adjustment_obj = new fabric.Line([0, 0, 0, 0], {top: 0, left: 0, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2}); // 座標調節用
 frame = new fabric.Rect({width: 850, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 300, strokeWidth: 1, stroke: 'black', selectable: false});
 
 circle = new fabric.Circle({name: 'circle', radius: 50});
@@ -34,7 +33,7 @@ hexagon = new fabric.Polygon([{x:0,y:-55},{x:47,y:-26.5},{x:47,y:26.5},{x:0,y:55
 hexagon.height =110;
 
 const array = [circle, rect, triangle, star, hexagon];
-for(let i = 0; i < array.length; i++) {
+for (let i = 0; i < array.length; i++) {
     let top = 25 + 135 * i;
     array[i].strokeWidth = 1.5;
     array[i].stroke = 'black';
@@ -49,16 +48,20 @@ for(let i = 0; i < array.length; i++) {
 }
 
 function Init() {
-    /* if round_array[?] = 0 -> obj_A != obj_B
-       if round_array[?] = 1 -> obj_A = obj_B */
-    if(round_array[round_count] === 0) {
-        r = RandomArray(2);
-    } else if (round_array[round_count] === 1) {
-        let f = $.extend({}, array[Math.floor(Math.random() * array.length)]);
-        r = Array.apply(null, Array(2)).map(function () {return f });
+    /* if trial_array[?] = 0 -> obj_A != obj_B
+       if trial_array[?] = 1 -> obj_A = obj_B */
+    switch (trial_array[trial_count]) {
+        case 0:
+            r = RandomArray(2);
+            break;
+
+        case 1:
+            let f = $.extend({}, array[Math.floor(Math.random() * array.length)]);
+            r = Array.apply(null, Array(2)).map(function () {return f });
+            break;
     }
 
-    if(round_count === round) logout();
+    if (trial_count === trial) logout();
 
     // 固定オブジェクト Fixed object Coordinate
     obj_A = $.extend({}, r[0]);
@@ -74,15 +77,15 @@ function Init() {
     obj_B.lockMovementX =  false;
     obj_B.lockMovementY = false;
 
-    round_count++;
+    trial_count++;
     startTime = Date.now();
 
-    if(control_option) {
-    slider  = new fabric.Group([$.extend({}, a), $.extend({}, b), $.extend({}, c), $.extend({}, d)], {name: 'slider', top: 500, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
-    canvas.add(frame, slider);
+    if (control_option) {
+        slider  = new fabric.Group([$.extend({}, a), $.extend({}, b), $.extend({}, c), $.extend({}, d)], {name: 'slider', top: 500, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
+        canvas.add(frame, slider);
     }
 
-    if(random_option) {
+    if (random_option) {
         canvas.add(obj_A, obj_B, line);
         RandomOption();
     } else {
@@ -110,22 +113,22 @@ canvas.on('object:moving', function (e) {
     let obj = e.target;
 
     // if object is too big ignore
-    if(obj.currentHeight > obj.canvas.height || obj.currentWidth > obj.canvas.width){
+    if (obj.currentHeight > obj.canvas.height || obj.currentWidth > obj.canvas.width){
         return;
     }
     obj.setCoords();
     // top-left  corner
-    if(obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < left_limit){
+    if (obj.getBoundingRect().top < 0 || obj.getBoundingRect().left < left_limit){
         obj.top = Math.max(obj.top, obj.top-obj.getBoundingRect().top);
         obj.left = Math.max(obj.left, obj.left-obj.getBoundingRect().left+left_limit);
     }
     // bot-right
-    if(obj.getBoundingRect().top+obj.getBoundingRect().height  > obj.canvas.height || obj.getBoundingRect().left+obj.getBoundingRect().width  > obj.canvas.width-frame_limit){
+    if (obj.getBoundingRect().top+obj.getBoundingRect().height  > obj.canvas.height || obj.getBoundingRect().left+obj.getBoundingRect().width  > obj.canvas.width-frame_limit){
         obj.top = Math.min(obj.top, obj.canvas.height-obj.getBoundingRect().height+obj.top-obj.getBoundingRect().top);
         obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left-frame_limit);
     }
 
-    if(control_option && canvas.getActiveObject() != obj_B) obj_B.left = slider.left;
+    if (control_option && canvas.getActiveObject() != obj_B) obj_B.left = slider.left;
 });
 
 // オブジェクトの選択（変更） Object selection (Change)
@@ -161,7 +164,7 @@ function RandomArray(m) {
     let r = [];
     let l = array.length;
 
-    for(let n = m-1; n >= 0; n--) {
+    for (let n = m-1; n >= 0; n--) {
         let i = Math.random() * l | 0;
         r[n] = t[i] || array[i];
         --l;
@@ -170,12 +173,12 @@ function RandomArray(m) {
     return r;
 }
 
-// ランダム率分の0を格納 Store 0 (e.g. round*random_rate/100 -> 100times * 20% = 20times)
-function RoundArray() {
-    for(let i = round*random_rate/100; i > 0; i--) {
-        let m = Math.floor(Math.random() * round);
-        if(round_array[m] !== 0) round_array[m] = 0;
+// ランダム率分の0を格納 Store 0 (e.g. trial*random_rate/100 -> 100times * 20% = 20times)
+function TrialArray() {
+    for (let i = trial*random_rate/100; i > 0; i--) {
+        let m = Math.floor(Math.random() * trial);
+        if (trial_array[m] !== 0) trial_array[m] = 0;
         else i++;
     }
-    console.log(round*random_rate/100, round_array);
+    console.log(trial*random_rate/100, trial_array);
 }

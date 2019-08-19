@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RenameField(
             model_name='cursorlog',
-            old_name='round',
+            old_name='trial',
             new_name='trial',
         ),
     ]

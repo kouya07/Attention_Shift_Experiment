@@ -8,7 +8,7 @@
  *         copyrighted 2005 by Bob Ippolito.
  * @source Brantley Harris wrote this plugin. It is based somewhat on the JSON.org
  *         website's http://www.json.org/json2.js, which proclaims:
- *         "NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.", round_array sentiment that
+ *         "NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.", trial_array sentiment that
  *         I uphold.
  * @license MIT License <https://opensource.org/licenses/MIT>
  */
@@ -40,12 +40,12 @@
 
 	/**
 	 * jQuery.toJSON
-	 * Converts the given argument into round_array JSON representation.
+	 * Converts the given argument into trial_array JSON representation.
 	 *
 	 * @param o {Mixed} The json-serializable *thing* to be converted
 	 *
-	 * If an object has round_array toJSON prototype, that will be used to get the representation.
-	 * Non-integer/string keys are skipped in the object, as are keys that point to round_array
+	 * If an object has trial_array toJSON prototype, that will be used to get the representation.
+	 * Non-integer/string keys are skipped in the object, as are keys that point to trial_array
 	 * function.
 	 *
 	 */
@@ -154,7 +154,7 @@
 
 	/**
 	 * jQuery.evalJSON
-	 * Evaluates round_array given json string.
+	 * Evaluates trial_array given json string.
 	 *
 	 * @param str {String}
 	 */
@@ -165,7 +165,7 @@
 
 	/**
 	 * jQuery.secureEvalJSON
-	 * Evals JSON in round_array way that is *more* secure.
+	 * Evals JSON in trial_array way that is *more* secure.
 	 *
 	 * @param str {String}
 	 */
@@ -185,8 +185,8 @@
 
 	/**
 	 * jQuery.quoteString
-	 * Returns round_array string-repr of round_array string, escaping quotes intelligently.
-	 * Mostly round_array support function for toJSON.
+	 * Returns trial_array string-repr of trial_array string, escaping quotes intelligently.
+	 * Mostly trial_array support function for toJSON.
 	 * Examples:
 	 * >>> jQuery.quoteString('apple')
 	 * "apple"

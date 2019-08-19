@@ -13,10 +13,10 @@ $.ajaxSetup({
 
 const page = document.getElementById("page");
 const log = document.getElementById('log');
+const latency = 500; // Display for 0.5s
 let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
-let latency = 500; // Display for 0.5s
 let startTime, endTime, trialTime;
 
 function CursorLog(e, mouse_event) {
@@ -30,27 +30,34 @@ function CursorLog(e, mouse_event) {
     milliseconds = new Date().getTime();
     dateStr = dateFormat.format(now);
 
-    if(mouse_event == 'down') temporary_time = now;
-    else if (mouse_event == 'up') MouseUp(now, temporary_time);
+    switch (mouse_event) {
+        case 'down':
+            temporary_time = now;
+            break;
+
+        case 'up':
+            MouseUp(now, temporary_time);
+            break;
+    }
 
     SendData();
 
     const text = document.createTextNode(now.toLocaleTimeString() + " mouse:" + mouse_event
         + " = {x = " + mouse_pos.x.toFixed(6)
         + ", y = " + mouse_pos.y.toFixed(6) + "} \u000a");
+
     log.insertBefore(text, log.firstChild);
 }
 
 function MouseUp(now, late) {
     const active_obj = canvas.getActiveObject();
 
-    console.log(active_obj);
+    if (active_obj != obj_A && active_obj != obj_B && active_obj != slider && active_obj != undefined) ChangeObj(active_obj);
+    else if ((active_obj == obj_B || active_obj == slider) && active_obj != undefined) {
+        time_log = (now - late)/ 1000;
 
-    if(active_obj != obj_A && active_obj != obj_B && active_obj != slider && active_obj != undefined) ChangeObj(active_obj);
-    else if(active_obj == obj_B || active_obj == slider && active_obj != undefined) {
-        console.log(active_obj);
         if (control_option && active_obj == obj_B) {
-            console.log(round_count, time_log, 'error');
+            console.log(trial_count, time_log, 'error');
             judgment = 'error';
             hint = error;
         } else {
@@ -66,16 +73,14 @@ function MouseUp(now, late) {
             const D = Math.sqrt(Math.pow(active_obj_w - c1, 2) + Math.pow(active_obj_h - c2, 2));
 
             if (D <= n1 && obj_A.name === obj_B.name) {
-                console.log(round_count, D, time_log, 'success');
+                console.log(trial_count, D, time_log, 'success');
                 judgment = 'success';
                 hint = correct;
             } else {
-                console.log(round_count, D, time_log, 'failure');
+                console.log(trial_count, D, time_log, 'failure');
                 judgment = 'failure';
                 hint = not_correct;
             }
-
-            time_log = (now - late)/ 1000;
 
             endTime = Date.now() + latency;
             trialTime = endTime - startTime;
@@ -93,11 +98,10 @@ function MouseUp(now, late) {
     }
 }
 
-//ユーザー情報を取得 Get user information
 function User_info(){
     $.ajax({
         async: false,
-        url: 'userinfo/',
+        url: 'user_info/',
         type: "GET",
         success: function(data) {
             participant_number = data.participant_number;
@@ -106,12 +110,12 @@ function User_info(){
             random_option = Boolean(Number(data.memory_interference));
             control_option = Boolean(Number(data.control_mode));
 
-            if(control_option) {
+            if (control_option) {
                 left_limit = frame.left;
                 frame_limit = 50;
             }
 
-            RoundArray();
+            TrialArray();
             Init();
         },
         error: function() {
@@ -120,17 +124,16 @@ function User_info(){
     });
 }
 
-// カーソルログ情報を送る Send cursor log information
 function SendData() {
     const sendData = {
         'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
         'pointer_x': mouse_pos.x.toFixed(6), 'pointer_y': mouse_pos.y.toFixed(6),
         'judgment': judgment, 's': time_log, 'T1': obj_B.name, 'T2': obj_A.name,
-        'round_count': round_count, 'time_ms': milliseconds, 'trial_time_ms': trialTime
+        'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_ms': trialTime
     };
 
     $.ajax({
-        url: 'cursorlog/',
+        url: 'cursor_log/',
         type: "POST",
         contentType: "application/json; charset=utf-8",
         datatype: "json",

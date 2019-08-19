@@ -23,11 +23,11 @@ function OnButtonClick() {
     const dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss");
     const dateStr = dateFormat.format(now);
 
-    if(q0 !=='' && q1 !=='' && q2 !=='' && q3 !=='' && q4 !=='' && q5 !=='' && participant_number !=='') {
+    if (participant_number !=='') {
         const sendData = {'participant_number': participant_number, 'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5, 'start_time': dateStr};
         $.ajax({
             async: false,
-            url: 'userlog/',
+            url: 'user_log/',
             type: "POST",
             contentType: "application/json; charset=utf-8",
             datatype: "json",
