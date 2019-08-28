@@ -30,7 +30,7 @@ class CursorLog(models.Model):
     T1 = models.CharField(max_length=20)
     T2 = models.CharField(max_length=20)
     trial = models.CharField(max_length=20, null=True)
-    trial_time_ms = models.CharField(max_length=20, null=True)
+    trial_time_s = models.CharField(max_length=20, null=True)
 
 
 class UserLog(models.Model):

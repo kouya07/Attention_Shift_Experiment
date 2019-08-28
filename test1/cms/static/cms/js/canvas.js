@@ -78,7 +78,6 @@ function Init() {
     obj_B.lockMovementY = false;
 
     trial_count++;
-    startTime = Date.now();
 
     if (control_option) {
         slider  = new fabric.Group([$.extend({}, a), $.extend({}, b), $.extend({}, c), $.extend({}, d)], {name: 'slider', top: 500, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});

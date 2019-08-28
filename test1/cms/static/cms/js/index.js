@@ -17,18 +17,21 @@ const latency = 500; // Display for 0.5s
 let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
-let startTime, endTime, trialTime;
+let diffTime, diffSecond, pastTime = 0;
 
 function CursorLog(e, mouse_event) {
     judgment = '';
     time_log = '';
-    trialTime = '';
     mouse_pos = canvas.getPointer(e.e);
 
     const now = new Date();
     const dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss.SSS");
     milliseconds = new Date().getTime();
     dateStr = dateFormat.format(now);
+
+    diffTime = now.getTime() - pastTime;
+    diffSecond = diffTime / (1000);
+    pastTime = now.getTime();
 
     switch (mouse_event) {
         case 'down':
@@ -81,9 +84,6 @@ function MouseUp(now, late) {
                 judgment = 'failure';
                 hint = not_correct;
             }
-
-            endTime = Date.now() + latency;
-            trialTime = endTime - startTime;
         }
 
         if (hint_option) canvas.add(hint);
@@ -129,7 +129,7 @@ function SendData() {
         'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
         'pointer_x': mouse_pos.x.toFixed(6), 'pointer_y': mouse_pos.y.toFixed(6),
         'judgment': judgment, 's': time_log, 'T1': obj_B.name, 'T2': obj_A.name,
-        'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_ms': trialTime
+        'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_s': diffSecond
     };
 
     $.ajax({
