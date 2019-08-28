@@ -23,6 +23,9 @@ function OnButtonClick() {
     const dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss");
     const dateStr = dateFormat.format(now);
 
+    const strURL = '../index/';
+    const options = "fullscreen=1,scrollbars=1";
+
     if (participant_number !=='') {
         const sendData = {'participant_number': participant_number, 'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5, 'start_time': dateStr};
         $.ajax({
@@ -33,7 +36,7 @@ function OnButtonClick() {
             datatype: "json",
             data: $.toJSON(sendData),
             success: function() {
-                 location.href = '../index/';
+                window.open(strURL, "", options);
             },
             error: function() {
                 alert("log error");
