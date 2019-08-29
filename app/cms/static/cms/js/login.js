@@ -24,7 +24,9 @@ function OnButtonClick() {
     const dateStr = dateFormat.format(now);
 
     const strURL = '../index/';
-    const options = "fullscreen=yes";
+    // const options = "fullscreen=yes";
+    var sw = screen.width;
+    var sh = screen.height;
 
     if (participant_number !=='') {
         const sendData = {'participant_number': participant_number, 'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5, 'start_time': dateStr};
@@ -36,7 +38,7 @@ function OnButtonClick() {
             datatype: "json",
             data: $.toJSON(sendData),
             success: function() {
-                window.open(strURL, "", options);
+                window.open(strURL, "", "left=0, top=0, width="+sw+", height="+sh);
             },
             error: function() {
                 alert("log error");
