@@ -24,7 +24,7 @@ function OnButtonClick() {
     const dateStr = dateFormat.format(now);
 
     const strURL = '../index/';
-    const options = "left=0, top=0, width=screen.width, height=screen.width";
+    const options = "fullscreen=yes";
 
     if (participant_number !=='') {
         const sendData = {'participant_number': participant_number, 'inconsistency': q0, 'result_feedback': q1, 'memory_interference': q2, 'control_mode': q3, 'device': q4, 'block_number': q5, 'start_time': dateStr};
