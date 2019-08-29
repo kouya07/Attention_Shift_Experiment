@@ -29,6 +29,8 @@ function CursorLog(e, mouse_event) {
     milliseconds = new Date().getTime();
     dateStr = dateFormat.format(now);
 
+    if(pastTime === 0) pastTime = now.getTime();
+
     diffTime = now.getTime() - pastTime;
     diffSecond = diffTime / (1000);
     pastTime = now.getTime();
