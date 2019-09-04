@@ -17,7 +17,7 @@ const latency = 500; // Display for 0.5s
 let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
-let diffTime, diffSecond, pastTime = 0;
+let diffTime, diffMilliseconds, pastTime = 0;
 
 function CursorLog(e, mouse_event) {
     judgment = '';
@@ -32,7 +32,8 @@ function CursorLog(e, mouse_event) {
     if(pastTime === 0) pastTime = now.getTime();
 
     diffTime = now.getTime() - pastTime;
-    diffSecond = diffTime / (1000);
+    diffMilliseconds = diffTime;
+    console.log(diffMilliseconds);
     pastTime = now.getTime();
 
     switch (mouse_event) {
@@ -131,7 +132,7 @@ function SendData() {
         'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
         'pointer_x': mouse_pos.x.toFixed(6), 'pointer_y': mouse_pos.y.toFixed(6),
         'judgment': judgment, 's': time_log, 'T1': obj_B.name, 'T2': obj_A.name,
-        'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_s': diffSecond
+        'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_ms': diffMilliseconds
     };
 
     $.ajax({
