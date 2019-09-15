@@ -64,7 +64,7 @@ function MouseUp(now, late) {
 
         if (control_option && active_obj == obj_B) {
             console.log(trial_count, time_log, 'error');
-            judgment = 'error';
+            judgment = 'mode-error';
             hint = error;
         } else {
             const c1 = obj_A.left + obj_A.width / 2;
@@ -84,7 +84,7 @@ function MouseUp(now, late) {
                 hint = correct;
             } else {
                 console.log(trial_count, D, time_log, 'failure');
-                judgment = 'failure';
+                judgment = 'error-inaccurate';
                 hint = not_correct;
             }
         }
