@@ -3,9 +3,15 @@ html,body{
     margin: auto;
 }
 
+div.content {
+    position: absolute;          /* 位置指定 */
+    top: 50%;                    /* 親要素の半分下にずらす */
+    left: 50%;                   /* 親要素の半分右にずらす */
+    transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
+}
+
 div.canvas {
     width:1200px;
-    margin: auto;
 }
 
 div.log {
@@ -14,5 +20,4 @@ div.log {
     height: 100px;
     border: 1px solid;
     white-space: pre;
-    margin: 10px;
 }

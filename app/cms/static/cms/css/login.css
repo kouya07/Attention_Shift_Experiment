@@ -26,33 +26,25 @@ h1 {
   margin-top: 0.2em;
 }
 
-.container {
-  display: flex;
-  -webkit-display: box;
-  -moz-display: box;
-  -ms-display: flexbox;
-  -webkit-display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  padding: 6%;
-  margin: 0;
+p {
+  padding-left: 12px;
+  font-weight: bold;
 }
 
 form {
   background-color: #FFF;
   padding: 2em;
-  padding-bottom: 3em;
   border-radius: 8px;
-  max-width: 2500px;
+  width: 600px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   box-shadow: 0 10px 40px -14px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  position: absolute;          /* 位置指定 */
+  top: 50%;                    /* 親要素の半分下にずらす */
+  left: 50%;                   /* 親要素の半分右にずらす */
+  transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
 }
 
 .form-content input {
@@ -80,8 +72,7 @@ form input:focus {
   border: none;
   border-radius: 4px;
   padding: 0.8em;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 2em;
   cursor: pointer;
   overflow: hidden;
   transition: all 200ms ease-in-out;
