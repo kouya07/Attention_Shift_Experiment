@@ -48,11 +48,11 @@ function CursorLog(e, mouse_event) {
 
     SendData();
 
-    const text = document.createTextNode(now.toLocaleTimeString() + " mouse:" + mouse_event
-        + " = {x = " + mouse_pos.x.toFixed(6)
-        + ", y = " + mouse_pos.y.toFixed(6) + "} \u000a");
-
-    log.insertBefore(text, log.firstChild);
+    // const text = document.createTextNode(now.toLocaleTimeString() + " mouse:" + mouse_event
+    //     + " = {x = " + mouse_pos.x.toFixed(6)
+    //     + ", y = " + mouse_pos.y.toFixed(6) + "} \u000a");
+    //
+    // log.insertBefore(text, log.firstChild);
 }
 
 function MouseUp(now, late) {
