@@ -23,6 +23,8 @@ $(function() {
     $('#q2-1').next('label').css('color', '#bbbbbb');
     $('#q2-2').prop('disabled', true);
     $('#q2-2').next('label').css('color', '#bbbbbb');
+
+    $('#q5').prop('disabled', true);
 });
 
 function OnButtonClick() {
