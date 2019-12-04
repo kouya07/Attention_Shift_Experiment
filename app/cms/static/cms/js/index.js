@@ -22,7 +22,7 @@ let diffTime, diffMilliseconds, pastTime = 0;
 function CursorLog(e, mouse_event) {
     judgment = '';
     time_log = '';
-    mouse_pos = canvas.getPointer(e.e);
+    // mouse_pos = canvas.getPointer(e.e);
 
     const now = new Date();
     const dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss.SSS");
@@ -33,7 +33,6 @@ function CursorLog(e, mouse_event) {
 
     diffTime = now.getTime() - pastTime;
     diffMilliseconds = diffTime;
-    console.log(diffMilliseconds);
     pastTime = now.getTime();
 
     switch (mouse_event) {
@@ -48,11 +47,11 @@ function CursorLog(e, mouse_event) {
 
     SendData();
 
-    // const text = document.createTextNode(now.toLocaleTimeString() + " mouse:" + mouse_event
-    //     + " = {x = " + mouse_pos.x.toFixed(6)
-    //     + ", y = " + mouse_pos.y.toFixed(6) + "} \u000a");
-    //
-    // log.insertBefore(text, log.firstChild);
+    const text = document.createTextNode(now.toLocaleTimeString() + " mouse:" + mouse_event
+                                        + " = {x = " + event.offsetX + ", y = " + event.offsetY
+                                        + " : " + event.clientX + ", " + event.clientY
+        + "} \u000a");
+    log.insertBefore(text, log.firstChild);
 }
 
 function MouseUp(now, late) {
@@ -130,7 +129,7 @@ function User_info(){
 function SendData() {
     const sendData = {
         'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
-        'pointer_x': mouse_pos.x.toFixed(6), 'pointer_y': mouse_pos.y.toFixed(6),
+        'pointer_x': event.offsetX, 'pointer_y': event.offsetY,
         'judgment': judgment, 's': time_log, 'T1': obj_B.name, 'T2': obj_A.name,
         'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_ms': diffMilliseconds
     };
