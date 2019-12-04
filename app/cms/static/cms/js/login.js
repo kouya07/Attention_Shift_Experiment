@@ -11,6 +11,20 @@ $.ajaxSetup({
     }
 });
 
+$(function() {
+    $('#q1-1').prop('checked', true);
+    $('#q1-1').prop('disabled', true);
+    $('#q1-1').next('label').css('color', '#bbbbbb');
+    $('#q1-2').prop('disabled', true);
+    $('#q1-2').next('label').css('color', '#bbbbbb');
+
+    $('#q2-2').prop('checked', true);
+    $('#q2-1').prop('disabled', true);
+    $('#q2-1').next('label').css('color', '#bbbbbb');
+    $('#q2-2').prop('disabled', true);
+    $('#q2-2').next('label').css('color', '#bbbbbb');
+});
+
 function OnButtonClick() {
     const participant_number = document.getElementById('participant_number').value;
     const q0 = document.form.elements['q0'].value;
