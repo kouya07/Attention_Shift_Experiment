@@ -5,10 +5,10 @@ div.content {
     transform: translateY(-50%) translateX(-50%);    /* 要素自体の半分、上と左にずらす */
 }
 
-div.log {
-    overflow-y: auto;
-    width: 600px;
-    height: 100px;
-    border: 1px solid;
-    white-space: pre;
-}
+/*div.log {*/
+/*    overflow-y: auto;*/
+/*    width: 600px;*/
+/*    height: 100px;*/
+/*    border: 1px solid;*/
+/*    white-space: pre;*/
+/*}*/

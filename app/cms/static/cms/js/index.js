@@ -13,17 +13,15 @@ $.ajaxSetup({
 
 const page = document.getElementById("page");
 const log = document.getElementById('log');
-const clientRect = log.getBoundingClientRect() ;
-
-console.log(clientRect.left + ", " + clientRect.top);
-
 const latency = 500; // Display for 0.5s
 let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
 let diffTime, diffMilliseconds, pastTime = 0;
+let canvas_pos;
 
 function CursorLog(e, mouse_event) {
+    canvas_pos = $('canvas').offset();
     judgment = '';
     time_log = '';
     mouse_pos = canvas.getPointer(e.e);
@@ -51,9 +49,9 @@ function CursorLog(e, mouse_event) {
 
     SendData();
 
-    const text = document.createTextNode(now.toLocaleTimeString() + " mouse:" + mouse_event
-        + " = {x = " + mouse_pos.x.toFixed(0) + ", y = " +  mouse_pos.y.toFixed(0) + "} \u000a");
-    log.insertBefore(text, log.firstChild);
+    // const text = document.createTextNode(now.toLocaleTimeString() + " mouse:" + mouse_event
+    //     + " = {x = " + mouse_pos.x.toFixed(0) + ", y = " +  mouse_pos.y.toFixed(0) + "} \u000a");
+    // log.insertBefore(text, log.firstChild);
 }
 
 function MouseUp(now, late) {
@@ -129,9 +127,11 @@ function User_info(){
 }
 
 function SendData() {
+    let pointer_x =  canvas_pos.left + mouse_pos.x;
+    let pointer_y = canvas_pos.top + mouse_pos.y;
     const sendData = {
         'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
-        'pointer_x': mouse_pos.x.toFixed(6), 'pointer_y': mouse_pos.y.toFixed(6),
+        'pointer_x': pointer_x, 'pointer_y': pointer_y,
         'judgment': judgment, 's': time_log, 'T1': obj_B.name, 'T2': obj_A.name,
         'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_ms': diffMilliseconds
     };
