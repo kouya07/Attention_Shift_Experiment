@@ -21,10 +21,10 @@ let diffTime, diffMilliseconds, pastTime = 0;
 let canvas_pos;
 
 function CursorLog(e, mouse_event) {
-    canvas_pos = $('canvas').offset();
     judgment = '';
     time_log = '';
     mouse_pos = canvas.getPointer(e.e);
+    canvas_pos = $('canvas').offset();
 
     const now = new Date();
     const dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss.SSS");
@@ -54,15 +54,15 @@ function CursorLog(e, mouse_event) {
     // log.insertBefore(text, log.firstChild);
 }
 
-function MouseUp(now, late) {
+function MouseUp(now, old) {
     const active_obj = canvas.getActiveObject();
 
-    if (active_obj != obj_A && active_obj != obj_B && active_obj != slider && active_obj != undefined) ChangeObj(active_obj);
+    if (active_obj != undefined && !active_obj.name.indexOf("select_obj_")) ChangeObj(active_obj);
     else if ((active_obj == obj_B || active_obj == slider) && active_obj != undefined) {
-        time_log = (now - late)/ 1000;
+        time_log = (now - old)/ 1000;
 
         if (control_option && active_obj == obj_B) {
-            console.log(trial_count, time_log, 'error');
+            // console.log(trial_count, time_log, 'mode-error');
             judgment = 'mode-error';
             hint = error;
         } else {
@@ -72,17 +72,17 @@ function MouseUp(now, late) {
             const active_obj_w = obj_B.width / 2 + obj_B.left;
             const active_obj_h = obj_B.height / 2 + obj_B.top;
 
-            const n1 = 0.1 * obj_length;
+            const n = 0.1 * obj_length;
 
             // 2点間の距離 Distance between two points
             const D = Math.sqrt(Math.pow(active_obj_w - c1, 2) + Math.pow(active_obj_h - c2, 2));
 
-            if (D <= n1 && obj_A.name === obj_B.name) {
-                console.log(trial_count, D, time_log, 'success');
+            if (D <= n && obj_A.name === obj_B.name) {
+                // console.log(trial_count, D, time_log, 'success');
                 judgment = 'success';
                 hint = correct;
             } else {
-                console.log(trial_count, D, time_log, 'failure');
+                // console.log(trial_count, D, time_log, 'error-inaccurate');
                 judgment = 'error-inaccurate';
                 hint = not_correct;
             }
@@ -127,8 +127,8 @@ function User_info(){
 }
 
 function SendData() {
-    let pointer_x =  canvas_pos.left + mouse_pos.x;
-    let pointer_y = canvas_pos.top + mouse_pos.y;
+    const pointer_x =  canvas_pos.left + mouse_pos.x;
+    const pointer_y = canvas_pos.top + mouse_pos.y;
     const sendData = {
         'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
         'pointer_x': pointer_x, 'pointer_y': pointer_y,

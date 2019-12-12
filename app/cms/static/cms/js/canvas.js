@@ -25,11 +25,11 @@ c = new fabric.Line([60, 0, 0, 0], {top: 450, left: 20, stroke: 'rgba(128,128,12
 d = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2});
 frame = new fabric.Rect({width: 850, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 300, strokeWidth: 1, stroke: 'black', selectable: false});
 
-circle = new fabric.Circle({name: 'circle', radius: 50});
-rect = new fabric.Rect({name: 'rect', width: obj_length, height: obj_length});
-triangle = new fabric.Triangle({name: 'triangle', width: obj_length, height: obj_length});
-star = new fabric.Star({name: 'star', numPoints: 5, innerRadius:25, outerRadius: 50});
-hexagon = new fabric.Polygon([{x:0,y:-55},{x:47,y:-26.5},{x:47,y:26.5},{x:0,y:55},{x:-47,y:26.5},{x:-47,y:-26.5}], {name: 'hexagon'});
+circle = new fabric.Circle({name: 'select_obj_circle', radius: 50});
+rect = new fabric.Rect({name: 'select_obj_rect', width: obj_length, height: obj_length});
+triangle = new fabric.Triangle({name: 'select_obj_triangle', width: obj_length, height: obj_length});
+star = new fabric.Star({name: 'select_obj_star', numPoints: 5, innerRadius:25, outerRadius: 50});
+hexagon = new fabric.Polygon([{x:0,y:-55},{x:47,y:-26.5},{x:47,y:26.5},{x:0,y:55},{x:-47,y:26.5},{x:-47,y:-26.5}], {name: 'select_obj_hexagon'});
 hexagon.height =110;
 
 const array = [circle, rect, triangle, star, hexagon];
@@ -68,12 +68,14 @@ function Init() {
     obj_A.fill = 'rgba(255,127,0,0.2)';
     obj_A.top = 300;
     obj_A.left = 1000;
+    obj_A.name = obj_A.name.substr(11);
 
     // 動く方のオブジェクト Moving object Coordinate
     obj_B = $.extend({}, r[1]);
     obj_B.fill = 'rgba(0,160,240,1)';
     obj_B.top = 300;
     obj_B.left = 300;
+    obj_B.name = obj_B.name.substr(11);
     obj_B.lockMovementX =  false;
     obj_B.lockMovementY = false;
 
@@ -135,6 +137,7 @@ function ChangeObj(active_obj) {
     canvas.remove(obj_B);
 
     obj_B = $.extend({}, active_obj);
+     obj_B.name = obj_B.name.substr(11);
     obj_B.fill = 'rgba(0,160,240,1)';
     obj_B.top = 300;
     obj_B.left = 300;
@@ -179,5 +182,5 @@ function TrialArray() {
         if (trial_array[m] !== 0) trial_array[m] = 0;
         else i++;
     }
-    console.log(trial*random_rate/100, trial_array);
+    // console.log(trial*random_rate/100, trial_array);
 }
