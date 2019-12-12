@@ -1,8 +1,8 @@
 
-test1/log\.txt
+app/log\.txt
 
 \.DS_Store
 
-test1/.DS_Store
+app/.DS_Store
 
-test1/log.txt
+app/log.txt
