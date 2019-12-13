@@ -27,7 +27,7 @@ function CursorLog(e, mouse_event) {
     canvas_pos = $('canvas').offset();
 
     const now = new Date();
-    const dateFormat = new DateFormat("yyyy/MM/dd HH:mm:ss.SSS");
+    const dateFormat = new DateFormat("yyyy_MM_dd HH:mm:ss.SSS");
     milliseconds = new Date().getTime();
     dateStr = dateFormat.format(now);
 
