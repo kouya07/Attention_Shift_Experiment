@@ -13,7 +13,7 @@ $.ajaxSetup({
 
 const page = document.getElementById("page");
 const log = document.getElementById('log');
-const latency = 500; // Display for 0.5s
+const latency = 700; // Display for 0.7s
 let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
@@ -90,13 +90,26 @@ function MouseUp(now, old) {
 
         if (hint_option) canvas.add(hint);
 
-        const timer = function () {
-            canvas.remove(hint);
+        var el = document.getElementById('canvas_box');
+
+        const timer1 = function () {
             canvas.clear();
-            Init();
+            // Init();
+            el.style.border = "0px solid";
+            canvas.add(gazing_point);
         };
 
-        setTimeout(timer, latency);
+        setTimeout(timer1, latency);
+
+        const timer2 = function () {
+            canvas.clear();
+            Init();
+            el.style.border = "1px solid";
+
+        };
+
+        setTimeout(timer2, latency + 2500);
+
     }
 }
 

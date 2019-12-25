@@ -1,6 +1,6 @@
 const canvas = new fabric.Canvas('canvas', {width: 1200, height: 700, selection: false});
 const obj_length = 100; // 一辺の長さ Length of a side
-let obj_side, obj_A, obj_B, circle, rect, triangle, star, hexagon, line, correct, not_correct, error, error1, error2;
+let obj_side, obj_A, obj_B, circle, rect, triangle, star, hexagon, line, correct, not_correct, error, error1, error2, gazing_point, gazing_point1, gazing_point2;
 let a, b, c, d, frame, slider; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
 let mouse_event;
@@ -17,6 +17,9 @@ not_correct = new fabric.Text('✖', {fill:'red', fontSize: 80, top: 150, left: 
 error1 = new fabric.Text('error' , {fill:'red', fontSize: 80, top: 150, left: 600, selectable: false});
 error2 = new fabric.Text('please drag about bar' , {fill:'red', fontSize: 30, top: 250, left: 550, selectable: false});
 error = new fabric.Group([error1, error2], {});
+gazing_point1 = new fabric.Line([0, 50, 0, 0], {top: 125, left: 600, stroke: 'black'});
+gazing_point2 = new fabric.Line([0, 0, 50, 0], {top: 150, left: 575, stroke: 'black'});
+gazing_point = new fabric.Group([gazing_point1, gazing_point2], {selectable: false});
 
 // object to drag the block in a bounded tunnel
 a = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(128,128,128,0.8)', strokeWidth: 1.5, stroke: 'black'});
