@@ -13,6 +13,7 @@ $.ajaxSetup({
 
 const page = document.getElementById("page");
 const log = document.getElementById('log');
+const canvas_box = document.getElementById('canvas_box');
 const latency = 700; // Display for 0.7s
 let participant_number;
 let time_log, judgment, temporary_time, hint;
@@ -90,26 +91,20 @@ function MouseUp(now, old) {
 
         if (hint_option) canvas.add(hint);
 
-        var el = document.getElementById('canvas_box');
-
         const timer1 = function () {
             canvas.clear();
-            // Init();
-            el.style.border = "0px solid";
+            canvas_box.style.border = "0px solid";
             canvas.add(gazing_point);
+            setTimeout(timer2, 2500);
         };
-
-        setTimeout(timer1, latency);
 
         const timer2 = function () {
             canvas.clear();
             Init();
-            el.style.border = "1px solid";
-
+            canvas_box.style.border = "1px solid";
         };
 
-        setTimeout(timer2, latency + 2500);
-
+        setTimeout(timer1, latency);
     }
 }
 
@@ -130,8 +125,17 @@ function User_info(){
                 frame_limit = 50;
             }
 
-            TrialArray();
-            Init();
+            canvas.add(gazing_point);
+
+            const timer = function () {
+                canvas.remove(gazing_point);
+                TrialArray();
+                Init();
+                canvas_box.style.border = "1px solid";
+            };
+
+            setTimeout(timer, 3000);
+
         },
         error: function() {
             alert("user log error");
