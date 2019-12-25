@@ -12,19 +12,27 @@ $.ajaxSetup({
 });
 
 $(function() {
-    $('#q1-1').prop('checked', true);
+    $('#q0-2').prop('disabled', true);
+    $('#q0-2').next('label').css('color', '#bbbbbb');
+    $('#q0-4').prop('disabled', true);
+    $('#q0-4').next('label').css('color', '#bbbbbb');
+
     $('#q1-1').prop('disabled', true);
     $('#q1-1').next('label').css('color', '#bbbbbb');
     $('#q1-2').prop('disabled', true);
     $('#q1-2').next('label').css('color', '#bbbbbb');
 
-    $('#q2-2').prop('checked', true);
     $('#q2-1').prop('disabled', true);
     $('#q2-1').next('label').css('color', '#bbbbbb');
     $('#q2-2').prop('disabled', true);
     $('#q2-2').next('label').css('color', '#bbbbbb');
 
-    $('#q5').prop('disabled', true);
+    $('#q3-1').prop('disabled', true);
+    $('#q3-1').next('label').css('color', '#bbbbbb');
+    $('#q3-2').prop('disabled', true);
+    $('#q3-2').next('label').css('color', '#bbbbbb');
+
+    // $('#q5').prop('disabled', true);
 });
 
 function OnButtonClick() {

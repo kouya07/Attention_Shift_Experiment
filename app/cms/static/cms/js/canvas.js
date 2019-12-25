@@ -5,7 +5,7 @@ let a, b, c, d, frame, slider; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
 let mouse_event;
 let left_limit = 200, frame_limit = 0;
-let trial = 100, trial_count = 0;
+let trial = 10, trial_count = 0;
 let random_rate = 0;
 let trial_array = Array.apply(null, Array(trial)).map(function () {return 1 });
 
