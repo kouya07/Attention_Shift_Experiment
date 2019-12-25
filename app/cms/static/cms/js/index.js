@@ -61,7 +61,7 @@ function MouseUp(now, old) {
     else if ((active_obj == obj_B || active_obj == slider) && active_obj != undefined) {
         time_log = (now - old)/ 1000;
 
-        if (control_option && active_obj == obj_B) {
+        if (!control_option && active_obj == obj_B) {
             // console.log(trial_count, time_log, 'mode-error');
             judgment = 'mode-error';
             hint = error;
@@ -112,7 +112,7 @@ function User_info(){
             random_option = Boolean(Number(data.memory_interference));
             control_option = Boolean(Number(data.control_mode));
 
-            if (control_option) {
+            if (!control_option) {
                 left_limit = frame.left;
                 frame_limit = 50;
             }

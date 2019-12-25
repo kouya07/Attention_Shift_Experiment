@@ -81,7 +81,7 @@ function Init() {
 
     trial_count++;
 
-    if (control_option) {
+    if (!control_option) {
         slider  = new fabric.Group([$.extend({}, a), $.extend({}, b), $.extend({}, c), $.extend({}, d)], {name: 'slider', top: 500, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
         canvas.add(frame, slider);
     }
@@ -129,7 +129,7 @@ canvas.on('object:moving', function (e) {
         obj.left = Math.min(obj.left, obj.canvas.width-obj.getBoundingRect().width+obj.left-obj.getBoundingRect().left-frame_limit);
     }
 
-    if (control_option && canvas.getActiveObject() != obj_B) obj_B.left = slider.left;
+    if (!control_option && canvas.getActiveObject() != obj_B) obj_B.left = slider.left;
 });
 
 // オブジェクトの選択（変更） Object selection (Change)
