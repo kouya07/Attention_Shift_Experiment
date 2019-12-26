@@ -94,7 +94,7 @@ function MouseUp(now, old) {
             canvas.clear();
             canvas_box.style.border = "0px solid";
             canvas.add(gazing_point);
-            setTimeout(timer2, 2500); // Display for 2.5s
+            setTimeout(timer2, 2000); // Display for 2.0s
         };
 
         const timer2 = function () {

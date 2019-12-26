@@ -69,15 +69,15 @@ function Init() {
     // 固定オブジェクト Fixed object Coordinate
     obj_A = $.extend({}, r[0]);
     obj_A.fill = 'rgba(255,127,0,0.2)';
-    obj_A.top = 300;
+    obj_A.top = 450;
     obj_A.left = 1000;
     obj_A.name = obj_A.name.substr(11);
 
     // 動く方のオブジェクト Moving object Coordinate
     obj_B = $.extend({}, r[1]);
     obj_B.fill = 'rgba(0,160,240,1)';
-    obj_B.top = 300;
-    obj_B.left = 300;
+    obj_B.top = 450;
+    obj_B.left = 400;
     obj_B.name = obj_B.name.substr(11);
     obj_B.lockMovementX =  false;
     obj_B.lockMovementY = false;
@@ -140,8 +140,8 @@ function ChangeObj(active_obj) {
     obj_B = $.extend({}, active_obj);
     obj_B.name = obj_B.name.substr(11);
     obj_B.fill = 'rgba(0,160,240,1)';
-    obj_B.top = 300;
-    obj_B.left = 300;
+    obj_B.top = 450;
+    obj_B.left = 400;
     obj_B.lockMovementX = false;
     obj_B.lockMovementY = false;
 
