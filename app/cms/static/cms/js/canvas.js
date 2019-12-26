@@ -1,14 +1,12 @@
 const canvas = new fabric.Canvas('canvas', {width: 1200, height: 700, selection: false});
-const obj_length = 100; // 一辺の長さ Length of a side
+const obj_length = 100; // 一辺の長さ Length of one side of object
 let obj_side, obj_A, obj_B, circle, rect, triangle, star, hexagon, line, correct, not_correct, error, error1, error2, gazing_point, gazing_point1, gazing_point2;
-let a, b, c, d, frame, slider; // Variable for Control_Option
+let button_frame, a, b, c, bar_frame, slider; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
 let mouse_event;
 let left_limit = 200, frame_limit = 0;
-let trial = 10, trial_count = 0;
-let random_rate = 0;
+let trial = 100, trial_count = 0, random_rate = 0;
 let trial_array = Array.apply(null, Array(trial)).map(function () {return 1 });
-
 let hint_option = false, random_option = false, control_option = false;
 
 line = new fabric.Line([0, 700, 0, 0], {top: 0, left: 200, stroke: 'black', selectable: false});
@@ -22,11 +20,11 @@ gazing_point2 = new fabric.Line([0, 0, 50, 0], {top: 150, left: 575, stroke: 'bl
 gazing_point = new fabric.Group([gazing_point1, gazing_point2], {selectable: false});
 
 // object to drag the block in a bounded tunnel
-a = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(128,128,128,0.8)', strokeWidth: 1.5, stroke: 'black'});
-b = new fabric.Line([60, 0, 0, 0], {top: 430, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
-c = new fabric.Line([60, 0, 0, 0], {top: 450, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
-d = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2});
-frame = new fabric.Rect({width: 850, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 300, strokeWidth: 1, stroke: 'black', selectable: false});
+button_frame = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(128,128,128,0.8)', strokeWidth: 1.5, stroke: 'black'});
+a = new fabric.Line([60, 0, 0, 0], {top: 430, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
+b = new fabric.Line([60, 0, 0, 0], {top: 450, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
+c = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2});
+bar_frame = new fabric.Rect({width: 850, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 300, strokeWidth: 1, stroke: 'black', selectable: false});
 
 circle = new fabric.Circle({name: 'select_obj_circle', radius: 50});
 rect = new fabric.Rect({name: 'select_obj_rect', width: obj_length, height: obj_length});
@@ -66,6 +64,8 @@ function Init() {
 
     if (trial_count === trial) logout();
 
+    trial_count++;
+
     // 固定オブジェクト Fixed object Coordinate
     obj_A = $.extend({}, r[0]);
     obj_A.fill = 'rgba(255,127,0,0.2)';
@@ -82,11 +82,9 @@ function Init() {
     obj_B.lockMovementX =  false;
     obj_B.lockMovementY = false;
 
-    trial_count++;
-
     if (!control_option) {
-        slider  = new fabric.Group([$.extend({}, a), $.extend({}, b), $.extend({}, c), $.extend({}, d)], {name: 'slider', top: 500, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
-        canvas.add(frame, slider);
+        slider  = new fabric.Group([$.extend({}, button_frame), $.extend({}, a), $.extend({}, b), $.extend({}, c)], {name: 'slider', top: 500, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
+        canvas.add(bar_frame, slider);
     }
 
     if (random_option) {
@@ -140,7 +138,7 @@ function ChangeObj(active_obj) {
     canvas.remove(obj_B);
 
     obj_B = $.extend({}, active_obj);
-     obj_B.name = obj_B.name.substr(11);
+    obj_B.name = obj_B.name.substr(11);
     obj_B.fill = 'rgba(0,160,240,1)';
     obj_B.top = 300;
     obj_B.left = 300;
@@ -182,6 +180,7 @@ function RandomArray(m) {
 function TrialArray() {
     for (let i = trial*random_rate/100; i > 0; i--) {
         let m = Math.floor(Math.random() * trial);
+
         if (trial_array[m] !== 0) trial_array[m] = 0;
         else i++;
     }

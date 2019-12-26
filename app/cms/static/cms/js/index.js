@@ -14,7 +14,6 @@ $.ajaxSetup({
 const page = document.getElementById("page");
 const log = document.getElementById('log');
 const canvas_box = document.getElementById('canvas_box');
-const latency = 700; // Display for 0.7s
 let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
@@ -95,7 +94,7 @@ function MouseUp(now, old) {
             canvas.clear();
             canvas_box.style.border = "0px solid";
             canvas.add(gazing_point);
-            setTimeout(timer2, 2500);
+            setTimeout(timer2, 2500); // Display for 2.5s
         };
 
         const timer2 = function () {
@@ -104,7 +103,7 @@ function MouseUp(now, old) {
             canvas_box.style.border = "1px solid";
         };
 
-        setTimeout(timer1, latency);
+        setTimeout(timer1, 700); // Display for 0.7s
     }
 }
 
@@ -121,7 +120,7 @@ function User_info(){
             control_option = Boolean(Number(data.control_mode));
 
             if (!control_option) {
-                left_limit = frame.left;
+                left_limit = bar_frame.left;
                 frame_limit = 50;
             }
 
@@ -134,7 +133,7 @@ function User_info(){
                 canvas_box.style.border = "1px solid";
             };
 
-            setTimeout(timer, 3000);
+            setTimeout(timer, 3000); // Display for 3.0s
 
         },
         error: function() {

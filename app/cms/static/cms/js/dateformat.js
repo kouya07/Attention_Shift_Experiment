@@ -12,7 +12,7 @@ For details, see the web site:
 
 --------------------------------------------------------
 patterns
-frame : Year         ex. "yyyy" -> "2007", "yy" -> "07"
+bar_frame : Year         ex. "yyyy" -> "2007", "yy" -> "07"
 M : Month        ex. "MM" -> "05" "12", "M" -> "5" "12"
 d : Day          ex. "dd" -> "09" "30", "d" -> "9" "30"
 H : Hour (0-23)  ex. "HH" -> "00" "23", "H" -> "0" "23"
