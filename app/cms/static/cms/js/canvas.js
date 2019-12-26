@@ -1,22 +1,22 @@
-const canvas = new fabric.Canvas('canvas', {width: 1200, height: 700, selection: false});
+const canvas = new fabric.Canvas('canvas', {width: 1300, height: 800, selection: false});
 const obj_length = 100; // 一辺の長さ Length of one side of object
 let obj_side, obj_A, obj_B, circle, rect, triangle, star, hexagon, line, correct, not_correct, error, error1, error2, gazing_point, gazing_point1, gazing_point2;
 let button_frame, a, b, c, bar_frame, slider; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
 let mouse_event;
-let left_limit = 200, frame_limit = 0;
-let trial = 100, trial_count = 0, random_rate = 0, object_height = 450;
+let left_limit = 250, frame_limit = 0;
+let trial = 100, trial_count = 0, random_rate = 0, object_height = 550;
 let trial_array = Array.apply(null, Array(trial)).map(function () {return 1 });
 let hint_option = false, random_option = false, control_option = false;
 
-line = new fabric.Line([0, 700, 0, 0], {top: 0, left: 200, stroke: 'black', selectable: false});
-correct = new fabric.Text('✔', {fill: 'green', fontSize: 80, top: 150, left: 650, selectable: false});
-not_correct = new fabric.Text('✖', {fill:'red', fontSize: 80, top: 150, left: 650, selectable: false});
-error1 = new fabric.Text('error' , {fill:'red', fontSize: 80, top: 150, left: 600, selectable: false});
-error2 = new fabric.Text('please drag about bar' , {fill:'red', fontSize: 30, top: 250, left: 550, selectable: false});
+line = new fabric.Line([0, 800, 0, 0], {top: 0, left: 250, stroke: 'black', selectable: false});
+correct = new fabric.Text('✔', {fill: 'green', fontSize: 80, top: 160, left: 650, selectable: false});
+not_correct = new fabric.Text('✖', {fill:'red', fontSize: 80, top: 160, left: 650, selectable: false});
+error1 = new fabric.Text('error' , {fill:'red', fontSize: 80, top: 160, left: 600, selectable: false});
+error2 = new fabric.Text('please drag about bar' , {fill:'red', fontSize: 30, top: 260, left: 550, selectable: false});
 error = new fabric.Group([error1, error2], {});
-gazing_point1 = new fabric.Line([0, 50, 0, 0], {top: 125, left: 600, stroke: 'black'});
-gazing_point2 = new fabric.Line([0, 0, 50, 0], {top: 150, left: 575, stroke: 'black'});
+gazing_point1 = new fabric.Line([0, 50, 0, 0], {top: 150, left: 650, stroke: 'black'});
+gazing_point2 = new fabric.Line([0, 0, 50, 0], {top: 175, left: 625, stroke: 'black'});
 gazing_point = new fabric.Group([gazing_point1, gazing_point2], {selectable: false});
 
 // object to drag the block in a bounded tunnel
@@ -24,7 +24,7 @@ button_frame = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(1
 a = new fabric.Line([60, 0, 0, 0], {top: 430, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
 b = new fabric.Line([60, 0, 0, 0], {top: 450, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
 c = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2});
-bar_frame = new fabric.Rect({width: 750, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 400, strokeWidth: 1, stroke: 'black', selectable: false});
+bar_frame = new fabric.Rect({width: 750, height: 100, fill: 'rgba(0,0,0,0)', top: 550, left: 450, strokeWidth: 1, stroke: 'black', selectable: false});
 
 circle = new fabric.Circle({name: 'select_obj_circle', radius: 50});
 rect = new fabric.Rect({name: 'select_obj_rect', width: obj_length, height: obj_length});
@@ -35,12 +35,12 @@ hexagon.height =110;
 
 const array = [circle, rect, triangle, star, hexagon];
 for (let i = 0; i < array.length; i++) {
-    let top = 25 + 135 * i;
+    let top = 40 + 150 * i;
     array[i].strokeWidth = 1.5;
     array[i].stroke = 'black';
     array[i].fill = 'green';
     array[i].top = top;
-    array[i].left = 50;
+    array[i].left = 75;
     array[i].lockMovementX = true;
     array[i].lockMovementY = true;
     array[i].hasControls = false;
@@ -70,20 +70,20 @@ function Init() {
     obj_A = $.extend({}, r[0]);
     obj_A.fill = 'rgba(255,127,0,0.2)';
     obj_A.top = object_height;
-    obj_A.left = 1000;
+    obj_A.left = 1100;
     obj_A.name = obj_A.name.substr(11);
 
     // 動く方のオブジェクト Moving object Coordinate
     obj_B = $.extend({}, r[1]);
     obj_B.fill = 'rgba(0,160,240,1)';
     obj_B.top = object_height;
-    obj_B.left = 400;
+    obj_B.left = 450;
     obj_B.name = obj_B.name.substr(11);
     obj_B.lockMovementX =  false;
     obj_B.lockMovementY = false;
 
     if (!control_option) {
-        slider  = new fabric.Group([$.extend({}, button_frame), $.extend({}, a), $.extend({}, b), $.extend({}, c)], {name: 'slider', top: 500, left: 400, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
+        slider  = new fabric.Group([$.extend({}, button_frame), $.extend({}, a), $.extend({}, b), $.extend({}, c)], {name: 'slider', top: 550, left: 450, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
         canvas.add(bar_frame, slider);
     }
 
@@ -141,7 +141,7 @@ function ChangeObj(active_obj) {
     obj_B.name = obj_B.name.substr(11);
     obj_B.fill = 'rgba(0,160,240,1)';
     obj_B.top = object_height;
-    obj_B.left = 400;
+    obj_B.left = 450;
     obj_B.lockMovementX = false;
     obj_B.lockMovementY = false;
 
@@ -150,14 +150,14 @@ function ChangeObj(active_obj) {
 
 // サイドのオブジェクトをランダムに配置させる Place side objects randomly
 function RandomOption() {
-    let top = 25;
+    let top = 40;
     let r = RandomArray(array.length);
 
     for (let i = 0; i < array.length; i++) {
         obj_side = $.extend({}, r[i]);
         obj_side.top = top;
         canvas.add(obj_side);
-        top += 135;
+        top += 150;
     }
 }
 
