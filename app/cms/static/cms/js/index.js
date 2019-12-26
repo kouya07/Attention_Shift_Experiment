@@ -122,6 +122,7 @@ function User_info(){
             if (!control_option) {
                 left_limit = bar_frame.left;
                 frame_limit = 50;
+                object_height = 300;
             }
 
             canvas.add(gazing_point);

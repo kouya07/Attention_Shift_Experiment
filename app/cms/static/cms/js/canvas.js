@@ -5,7 +5,7 @@ let button_frame, a, b, c, bar_frame, slider; // Variable for Control_Option
 let r; // Array for displaying in obj_A and obj_B
 let mouse_event;
 let left_limit = 200, frame_limit = 0;
-let trial = 100, trial_count = 0, random_rate = 0;
+let trial = 100, trial_count = 0, random_rate = 0, object_height = 450;
 let trial_array = Array.apply(null, Array(trial)).map(function () {return 1 });
 let hint_option = false, random_option = false, control_option = false;
 
@@ -24,7 +24,7 @@ button_frame = new fabric.Rect({width: 100, height: 100, top: 400, fill: 'rgba(1
 a = new fabric.Line([60, 0, 0, 0], {top: 430, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
 b = new fabric.Line([60, 0, 0, 0], {top: 450, left: 20, stroke: 'rgba(128,128,128,1)', strokeWidth: 2});
 c = new fabric.Line([60, 0, 0, 0], {top: 470, left: 20, stroke: 'rgba(128,128,0128,1)', strokeWidth: 2});
-bar_frame = new fabric.Rect({width: 850, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 300, strokeWidth: 1, stroke: 'black', selectable: false});
+bar_frame = new fabric.Rect({width: 750, height: 100, fill: 'rgba(0,0,0,0)', top: 500, left: 400, strokeWidth: 1, stroke: 'black', selectable: false});
 
 circle = new fabric.Circle({name: 'select_obj_circle', radius: 50});
 rect = new fabric.Rect({name: 'select_obj_rect', width: obj_length, height: obj_length});
@@ -69,21 +69,21 @@ function Init() {
     // 固定オブジェクト Fixed object Coordinate
     obj_A = $.extend({}, r[0]);
     obj_A.fill = 'rgba(255,127,0,0.2)';
-    obj_A.top = 450;
+    obj_A.top = object_height;
     obj_A.left = 1000;
     obj_A.name = obj_A.name.substr(11);
 
     // 動く方のオブジェクト Moving object Coordinate
     obj_B = $.extend({}, r[1]);
     obj_B.fill = 'rgba(0,160,240,1)';
-    obj_B.top = 450;
+    obj_B.top = object_height;
     obj_B.left = 400;
     obj_B.name = obj_B.name.substr(11);
     obj_B.lockMovementX =  false;
     obj_B.lockMovementY = false;
 
     if (!control_option) {
-        slider  = new fabric.Group([$.extend({}, button_frame), $.extend({}, a), $.extend({}, b), $.extend({}, c)], {name: 'slider', top: 500, left: 300, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
+        slider  = new fabric.Group([$.extend({}, button_frame), $.extend({}, a), $.extend({}, b), $.extend({}, c)], {name: 'slider', top: 500, left: 400, hasControls: false, hasBorders: false, lockMovementY: true, objectCaching: false});
         canvas.add(bar_frame, slider);
     }
 
@@ -140,7 +140,7 @@ function ChangeObj(active_obj) {
     obj_B = $.extend({}, active_obj);
     obj_B.name = obj_B.name.substr(11);
     obj_B.fill = 'rgba(0,160,240,1)';
-    obj_B.top = 450;
+    obj_B.top = object_height;
     obj_B.left = 400;
     obj_B.lockMovementX = false;
     obj_B.lockMovementY = false;
