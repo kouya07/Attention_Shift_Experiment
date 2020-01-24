@@ -32,6 +32,9 @@ $(function() {
     $('#q3-2').prop('disabled', true);
     $('#q3-2').next('label').css('color', '#bbbbbb');
 
+    $('#q4-2').prop('disabled', true);
+    $('#q4-2').next('label').css('color', '#bbbbbb');
+
     // $('#q5').prop('disabled', true);
 });
 
