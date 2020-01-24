@@ -9,6 +9,8 @@ let trial = 100, trial_count = 0, random_rate = 0, object_height = 550;
 let trial_array = Array.apply(null, Array(trial)).map(function () {return 1 });
 let hint_option = false, random_option = false, control_option = false;
 
+let for_up_time, for_down_time;
+
 line = new fabric.Line([0, 800, 0, 0], {top: 0, left: 250, stroke: 'black', selectable: false});
 correct = new fabric.Text('✔', {fill: 'green', fontSize: 80, top: 160, left: 650, selectable: false});
 not_correct = new fabric.Text('✖', {fill:'red', fontSize: 80, top: 160, left: 650, selectable: false});
@@ -65,6 +67,10 @@ function Init() {
     if (trial_count === trial) logout();
 
     trial_count++;
+
+    const now = new Date();
+    for_up_time = now;
+    for_down_time = now;
 
     // 固定オブジェクト Fixed object Coordinate
     obj_A = $.extend({}, r[0]);

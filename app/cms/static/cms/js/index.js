@@ -20,9 +20,13 @@ let dateStr, mouse_pos, milliseconds;
 let diffTime, diffMilliseconds, pastTime = 0;
 let canvas_pos;
 
+let o, p;
+
 function CursorLog(e, mouse_event) {
     judgment = '';
     time_log = '';
+    o = '';
+    p = '';
     mouse_pos = canvas.getPointer(e.e);
     canvas_pos = $('canvas').offset();
     const now = new Date();
@@ -39,9 +43,29 @@ function CursorLog(e, mouse_event) {
     switch (mouse_event) {
         case 'down':
             temporary_time = now;
+            const active_obj = canvas.getActiveObject();
+
+            // Pattern 1
+            if(active_obj != obj_A && active_obj != undefined) {
+                o = (now - for_down_time) / 1000;
+                for_down_time = now;
+            }
+
+            // // Pattern 2
+            // if(active_obj != obj_B) {
+            //     o = (now - for_down_time) / 1000;
+            // }
+            //
+            // // Pattern 3
+            // if(active_obj != obj_A && active_obj != undefined) {
+            //     o = (now - for_down_time) / 1000;
+            // }
+
+
             break;
 
         case 'up':
+            p = (now - for_up_time) / 1000;
             MouseUp(now, temporary_time);
             break;
     }
@@ -149,7 +173,8 @@ function SendData() {
         'participant_number': participant_number, 'time': dateStr, 'mouse_event': mouse_event,
         'pointer_x': pointer_x, 'pointer_y': pointer_y,
         'judgment': judgment, 's': time_log, 'T1': obj_B.name, 'T2': obj_A.name,
-        'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_ms': diffMilliseconds
+        'trial_count': trial_count, 'time_ms': milliseconds, 'trial_time_ms': diffMilliseconds,
+        'trial_to_down' : o, 'trial_to_up' : p
     };
 
     $.ajax({

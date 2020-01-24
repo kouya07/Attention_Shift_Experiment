@@ -31,6 +31,8 @@ class CursorLog(models.Model):
     T2 = models.CharField(max_length=20)
     trial = models.CharField(max_length=20, null=True)
     trial_time_ms = models.CharField(max_length=20, null=True)
+    trial_to_down = models.CharField(max_length=20, null=True)
+    trial_to_up = models.CharField(max_length=20, null=True)
 
 
 class UserLog(models.Model):
