@@ -46,3 +46,10 @@ class UserLog(models.Model):
     block_number = models.CharField(max_length=20)
     start_time = models.CharField(max_length=20, null=True)
     end_time = models.CharField(max_length=20, null=True)
+
+
+class StatusLog(models.Model):
+    participant_number = models.CharField(max_length=20)
+    time = models.CharField(max_length=30)
+    status = models.CharField(max_length=30)
+    trial = models.CharField(max_length=20, null=True)

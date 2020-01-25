@@ -14,15 +14,19 @@ $.ajaxSetup({
 const page = document.getElementById("page");
 const log = document.getElementById('log');
 const canvas_box = document.getElementById('canvas_box');
+const dateFormat = new DateFormat("yyyy_MM_dd HH:mm:ss.SSS");
 let participant_number;
 let time_log, judgment, temporary_time, hint;
 let dateStr, mouse_pos, milliseconds;
 let diffTime, diffMilliseconds, pastTime = 0;
 let canvas_pos;
+let active_obj;
 
 let o, p;
+let status;
 
 function CursorLog(e, mouse_event) {
+    active_obj = canvas.getActiveObject();
     judgment = '';
     time_log = '';
     o = '';
@@ -30,7 +34,6 @@ function CursorLog(e, mouse_event) {
     mouse_pos = canvas.getPointer(e.e);
     canvas_pos = $('canvas').offset();
     const now = new Date();
-    const dateFormat = new DateFormat("yyyy_MM_dd HH:mm:ss.SSS");
     milliseconds = new Date().getTime();
     dateStr = dateFormat.format(now);
 
@@ -43,29 +46,12 @@ function CursorLog(e, mouse_event) {
     switch (mouse_event) {
         case 'down':
             temporary_time = now;
-            const active_obj = canvas.getActiveObject();
-
-            // Pattern 1
-            if(active_obj != obj_A && active_obj != undefined) {
-                o = (now - for_down_time) / 1000;
-                for_down_time = now;
-            }
-
-            // // Pattern 2
-            // if(active_obj != obj_B) {
-            //     o = (now - for_down_time) / 1000;
-            // }
-            //
-            // // Pattern 3
-            // if(active_obj != obj_A && active_obj != undefined) {
-            //     o = (now - for_down_time) / 1000;
-            // }
-
+            if(active_obj == obj_B) o = (now - for_down_time) / 1000;
 
             break;
 
         case 'up':
-            p = (now - for_up_time) / 1000;
+            if(active_obj == obj_B) p = (now - for_up_time) / 1000;
             MouseUp(now, temporary_time);
             break;
     }
@@ -78,8 +64,6 @@ function CursorLog(e, mouse_event) {
 }
 
 function MouseUp(now, old) {
-    const active_obj = canvas.getActiveObject();
-
     if (active_obj != undefined && !active_obj.name.indexOf("select_obj_")) ChangeObj(active_obj);
     else if ((active_obj == obj_B || active_obj == slider) && active_obj != undefined) {
         time_log = (now - old)/ 1000;
@@ -112,16 +96,22 @@ function MouseUp(now, old) {
         }
 
         if (hint_option) canvas.add(hint);
+        status = "appeared hint";
+        SendStatusData();
 
         const timer1 = function () {
             canvas.clear();
             canvas_box.style.border = "0px solid";
             canvas.add(gazing_point);
+            status = "appeared +";
+            SendStatusData();
             setTimeout(timer2, 1500); // Display for 1.5s
         };
 
         const timer2 = function () {
             canvas.clear();
+            status = "disappeared +";
+            SendStatusData();
             Init();
             canvas_box.style.border = "1px solid";
         };
@@ -149,9 +139,13 @@ function User_info(){
             }
 
             canvas.add(gazing_point);
+            status = "appeared +";
+            SendStatusData();
 
             const timer = function () {
                 canvas.remove(gazing_point);
+                status = "disappeared +";
+                SendStatusData();
                 TrialArray();
                 Init();
                 canvas_box.style.border = "1px solid";
@@ -206,6 +200,28 @@ function logout() {
             alert("終了 Thank you.");
             location.href = '../login/';
         },
+        error: function () {
+            // alert("cursor log error");
+        }
+    });
+}
+
+function SendStatusData() {
+    const now = new Date();
+    dateStr = dateFormat.format(now);
+    const sendData = {
+        'participant_number': participant_number, 'time': dateStr, 'status': status, 'trial':trial_count
+    };
+
+    $.ajax({
+        url: 'status_log/',
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        datatype: "json",
+        timeout: 0,
+        cache: false,
+        data: $.toJSON(sendData),
+        success: function () { },
         error: function () {
             // alert("cursor log error");
         }
